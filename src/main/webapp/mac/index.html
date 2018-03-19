@@ -1,0 +1,59 @@
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"
+          crossorigin="anonymous">
+</head>
+<body>
+<table id="example" class="display compact" style="width:100%">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Ratio</th>
+        <th>xbox</th>
+        <th>win10</th>
+        <th>android</th>
+        <th>gearvr</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+<script>
+    $.ajax({
+        url: "/api/mac"
+    }).done(function (data) {
+        for (let row of data) {
+            var tr = document.createElement("tr");
+            tr.appendChild(addRow(row.name));
+            tr.appendChild(addRow(row.description));
+            tr.appendChild(addRow(row.ratio));
+            tr.appendChild(addRow(row.flags[0]));
+            tr.appendChild(addRow(row.flags[1]));
+            tr.appendChild(addRow(row.flags[2]));
+            tr.appendChild(addRow(row.flags[3]));
+            $("#example tbody").append(tr);
+        }
+        $('#example').DataTable({
+            paging: false
+        });
+
+    });
+
+    function addRow(value) {
+        let td = document.createElement("td");
+        if(value === true){
+            td.style.backgroundColor = "DarkSeaGreen";
+        }
+        if(value === false){
+            td.style.backgroundColor = "DarkSalmon";
+        }
+        let text = document.createTextNode(value)
+        td.appendChild(text);
+        return td;
+    }
+</script>
+</body>
+</html>
