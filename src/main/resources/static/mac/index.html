@@ -28,7 +28,7 @@
         for (let row of data) {
             var tr = document.createElement("tr");
             tr.appendChild(addRow(row.name));
-            tr.appendChild(addRow(row.description));
+            tr.appendChild(addRow(row.description, row.href));
             tr.appendChild(addRow(row.ratio));
             tr.appendChild(addRow(row.flags[0]));
             tr.appendChild(addRow(row.flags[1]));
@@ -42,7 +42,7 @@
 
     });
 
-    function addRow(value) {
+    function addRow(value, href) {
         let td = document.createElement("td");
         if(value === true){
             td.style.backgroundColor = "DarkSeaGreen";
@@ -50,7 +50,13 @@
         if(value === false){
             td.style.backgroundColor = "DarkSalmon";
         }
-        let text = document.createTextNode(value)
+        let text = document.createTextNode(value);
+        if (href) {
+            text = document.createElement('a');
+            var createAText = document.createTextNode(value);
+            text.appendChild(createAText);
+            text.setAttribute('href', href);
+        }
         td.appendChild(text);
         return td;
     }

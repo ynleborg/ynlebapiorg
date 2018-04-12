@@ -7,6 +7,7 @@ import lombok.Data;
 @Builder
 public class Achievement {
     private String name;
+    private String href;
     private String description;
     private Double ratio;
     private Boolean[] flags;
