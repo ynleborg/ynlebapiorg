@@ -69,6 +69,8 @@ public class MinecraftAchievementComperatorService {
             return "Into the Nether";
         } else if ("Tie Die Outfit".equals(name)) {
             return "Tie Dye Outfit";
+        } else if ("Sail the seven seas".equals(name)) {
+            return "Sail the 7 Seas";
         } else {
             return name;
         }
