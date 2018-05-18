@@ -38,7 +38,9 @@ public class MinecraftAchievementComperatorService {
     private void processPanels(Map<String, Achievement> data, TagNode rootTagNode, String className, int index) {
         TagNode[] elementByAttValue = rootTagNode.getElementsByAttValue(CLASS, className, true, true);
         Arrays.asList(elementByAttValue).forEach(e -> {
-            String name = decrapify(e.findElementByAttValue(CLASS, "mainlink", true, true).getText().toString().trim());
+            TagNode mainlink = e.findElementByAttValue(CLASS, "mainlink", true, true);
+            String name = decrapify(mainlink.getText().toString().trim());
+            String href = mainlink.getAttributeByName("href");
             String description = e.findElementByAttValue(CLASS, "subheader", true, true).getText().toString().trim();
             Double ratio = extractRatio(e.findElementByAttValue(CLASS, "chartlist", true, true).getText().toString());
 
@@ -47,7 +49,13 @@ public class MinecraftAchievementComperatorService {
             if (candidate != null) {
                 candidate.getFlags()[index] = unlocked;
             } else {
-                Achievement achievement = Achievement.builder().name(name).description(description).ratio(ratio).flags(new Boolean[4]).build();
+                Achievement achievement = Achievement.builder()
+                        .name(name)
+                        .href("https://www.trueachievements.com" + href)
+                        .description(description)
+                        .ratio(ratio)
+                        .flags(new Boolean[4])
+                        .build();
                 achievement.getFlags()[index] = unlocked;
                 data.put(name, achievement);
             }
