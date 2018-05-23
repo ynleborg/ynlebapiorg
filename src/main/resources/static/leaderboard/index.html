@@ -1,0 +1,67 @@
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"
+          crossorigin="anonymous">
+</head>
+<body>
+<table id="example" class="display compact" style="width:60%; font-family:'Verdana', sans-serif;">
+    <thead>
+    <tr>
+        <th>Gracz</th>
+        <th>Platforma</th>
+        <th>Start</th>
+        <th>Aktualny</th>
+        <th>Delta</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+<script>
+    $.ajax({
+        url: "/api/leaderboard"
+    }).done(function (data) {
+        for (let row of data) {
+            var tr = document.createElement("tr");
+            tr.appendChild(addRow(row.userName, row.icon));
+            tr.appendChild(addRow(row.platform));
+            tr.appendChild(addRow(row.initialScore));
+            tr.appendChild(addRow(row.currentScore));
+            tr.appendChild(addRow(row.delta));
+            $("#example tbody").append(tr);
+        }
+        $('#example').DataTable({
+            paging: false
+        });
+
+    });
+
+    function addRow(value, icon) {
+        let td = document.createElement("td");
+        if (value === 'xbox') {
+            td.style.backgroundColor = "DarkSeaGreen";
+        }
+        if (value === 'ps4') {
+            td.style.backgroundColor = "LightSkyBlue";
+        }
+        if (value === 'steam') {
+            td.style.backgroundColor = "LightGray";
+        }
+        let cell = document.createTextNode(value);
+        if (icon) {
+            cell = document.createElement('a');
+            var img = document.createElement('img');
+            img.setAttribute('src', icon);
+            var createAText = document.createTextNode(value);
+            cell.appendChild(img);
+            cell.appendChild(createAText);
+
+        }
+        td.appendChild(cell);
+        return td;
+    }
+</script>
+</body>
+</html>

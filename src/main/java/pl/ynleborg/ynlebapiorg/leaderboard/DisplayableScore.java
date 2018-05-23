@@ -9,16 +9,17 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Score {
-
-    private String key;
+public class DisplayableScore {
 
     private String userName;
 
     private String platform;
 
+    private String initialScore;
+
+    private String currentScore;
+
+    private String delta;
+
     private String icon;
-
-    private Long score;
-
 }

@@ -15,10 +15,8 @@ public class TALeaderboardController {
     private TALeaderboardService service;
 
     @RequestMapping("/api/leaderboard")
-    public String leaderboard() throws IOException {
-        Collection<Score> model = service.getModel();
-        ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.writeValueAsString(model);
+    public Collection<DisplayableScore> leaderboard() throws IOException {
+        return service.getDisplayableScores();
     }
 
 
