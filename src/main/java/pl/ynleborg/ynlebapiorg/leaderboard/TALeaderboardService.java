@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.NumberFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -40,13 +41,23 @@ public class TALeaderboardService {
                     .userName(current.getUserName())
                     .platform(current.getPlatform())
                     .icon(current.getIcon())
-                    .initialScore(String.valueOf(initial.getScore()))
-                    .currentScore(String.valueOf(current.getScore()))
-                    .delta(String.valueOf(current.getScore() - initial.getScore()))
+                    .link(getLink(current.getUserName(), current.getPlatform()))
+                    .initialScore(NumberFormat.getNumberInstance(Locale.US).format(initial.getScore()))
+                    .currentScore(NumberFormat.getNumberInstance(Locale.US).format(current.getScore()))
+                    .delta(NumberFormat.getNumberInstance(Locale.US).format(current.getScore() - initial.getScore()))
                     .build());
         });
-        List<DisplayableScore> collect = result.stream().sorted(Comparator.comparing(DisplayableScore::getDelta).reversed()).collect(Collectors.toList());
-        return collect;
+        return result.stream().sorted(Comparator.comparing(DisplayableScore::getDelta).reversed()).collect(Collectors.toList());
+    }
+
+    private String getLink(String userName, String platform) {
+        if (platform.contains("xbox")) {
+            return "https://www.trueachievements.com/gamer/" + userName;
+        } else if (platform.contains("ps4")) {
+            return "https://www.truetrophies.com/gamer/" + userName;
+        } else {
+            return "https://www.truesteamachievements.com/gamer/" + userName;
+        }
     }
 
     public List<Score> getScores() throws IOException {

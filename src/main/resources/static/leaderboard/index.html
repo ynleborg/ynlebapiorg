@@ -4,11 +4,13 @@
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"
           crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<table id="example" class="display compact" style="width:60%; font-family:'Verdana', sans-serif;">
+<table id="leaderboard" class="display compact">
     <thead>
     <tr>
+        <th>Pozycja</th>
         <th>Gracz</th>
         <th>Platforma</th>
         <th>Start</th>
@@ -21,47 +23,48 @@
 </table>
 <script>
     $.ajax({
-        url: "http://localhost:9080/api/leaderboard"
+        url: "http://localhost:9080/api/leaderboard" //do testów
+        //url: "/api/leaderboard"
     }).done(function (data) {
+        let i = 1;
         for (let row of data) {
             var tr = document.createElement("tr");
-            tr.appendChild(addRow(row.userName, row.icon));
-            tr.appendChild(addRow(row.platform));
-            tr.appendChild(addRow(row.initialScore));
-            tr.appendChild(addRow(row.currentScore));
-            tr.appendChild(addRow(row.delta));
-            $("#example tbody").append(tr);
+            tr.appendChild(addRow(i++, 'position'));
+            tr.appendChild(addGamerRow(row.userName, row.icon, row.link));
+            tr.appendChild(addRow(row.platform, row.platform));
+            tr.appendChild(addRow(row.initialScore, 'score'));
+            tr.appendChild(addRow(row.currentScore, 'score'));
+            tr.appendChild(addRow(row.delta, 'score'));
+            $("#leaderboard tbody").append(tr);
         }
-        $('#example').DataTable({
+        $('#leaderboard').DataTable({
             paging: false
         });
-
     });
 
-    function addRow(value, icon) {
+    function addGamerRow(value, icon, link) {
         let td = document.createElement("td");
-        if (value === 'xbox') {
-            td.style.backgroundColor = "DarkSeaGreen";
-        }
-        if (value === 'ps4') {
-            td.style.backgroundColor = "LightSkyBlue";
-        }
-        if (value === 'steam') {
-            td.style.backgroundColor = "LightGray";
-        }
-        let cell = document.createTextNode(value);
-        if (icon) {
-            cell = document.createElement('div');
-            var img = document.createElement('img');
-            img.setAttribute('src', icon);
-            p = document.createElement('span');
-            var createAText = document.createTextNode(value);
-            p.appendChild(createAText)
-            cell.appendChild(img);
-            cell.appendChild(p);
+        let div = document.createElement('div');
+        let img = document.createElement('img');
+        img.setAttribute('src', icon);
+        let a = document.createElement('a');
+        a.classList.add("username");
+        let createAText = document.createTextNode(value);
+        a.appendChild(createAText);
+        a.setAttribute('href', link);
+        div.appendChild(img);
+        div.appendChild(a);
+        td.appendChild(div);
+        return td;
+    }
 
-        }
-        td.appendChild(cell);
+    function addRow(value, className) {
+        let td = document.createElement("td");
+        let div = document.createElement('div');
+        div.classList.add(className);
+        let cell = document.createTextNode(value);
+        div.appendChild(cell);
+        td.appendChild(div);
         return td;
     }
 </script>

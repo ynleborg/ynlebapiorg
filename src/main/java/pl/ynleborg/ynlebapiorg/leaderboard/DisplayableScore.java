@@ -22,4 +22,6 @@ public class DisplayableScore {
     private String delta;
 
     private String icon;
+
+    private String link;
 }

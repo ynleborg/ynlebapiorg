@@ -6,7 +6,7 @@
           crossorigin="anonymous">
 </head>
 <body>
-<table id="example" class="display compact" style="width:100%">
+<table id="leaderboard" class="display compact" style="width:100%">
     <thead>
     <tr>
         <th>Name</th>
@@ -34,9 +34,9 @@
             tr.appendChild(addRow(row.flags[1]));
             tr.appendChild(addRow(row.flags[2]));
             tr.appendChild(addRow(row.flags[3]));
-            $("#example tbody").append(tr);
+            $("#leaderboard tbody").append(tr);
         }
-        $('#example').DataTable({
+        $('#leaderboard').DataTable({
             paging: false
         });
 

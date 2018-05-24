@@ -20,6 +20,4 @@ public class TALeaderboardController {
         response.setHeader("Access-Control-Allow-Origin", "http://localhost:63342");
         return service.getDisplayableScores();
     }
-
-
 }
