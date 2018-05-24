@@ -1,10 +1,10 @@
 package pl.ynleborg.ynlebapiorg.leaderboard;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Collection;
 
@@ -15,7 +15,9 @@ public class TALeaderboardController {
     private TALeaderboardService service;
 
     @RequestMapping("/api/leaderboard")
-    public Collection<DisplayableScore> leaderboard() throws IOException {
+    public Collection<DisplayableScore> leaderboard(HttpServletResponse response) throws IOException {
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        response.setHeader("Access-Control-Allow-Origin", "http://localhost:63342");
         return service.getDisplayableScores();
     }
 

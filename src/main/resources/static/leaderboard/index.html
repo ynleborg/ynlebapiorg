@@ -21,7 +21,7 @@
 </table>
 <script>
     $.ajax({
-        url: "/api/leaderboard"
+        url: "http://localhost:9080/api/leaderboard"
     }).done(function (data) {
         for (let row of data) {
             var tr = document.createElement("tr");
@@ -51,12 +51,14 @@
         }
         let cell = document.createTextNode(value);
         if (icon) {
-            cell = document.createElement('a');
+            cell = document.createElement('div');
             var img = document.createElement('img');
             img.setAttribute('src', icon);
+            p = document.createElement('span');
             var createAText = document.createTextNode(value);
+            p.appendChild(createAText)
             cell.appendChild(img);
-            cell.appendChild(createAText);
+            cell.appendChild(p);
 
         }
         td.appendChild(cell);
