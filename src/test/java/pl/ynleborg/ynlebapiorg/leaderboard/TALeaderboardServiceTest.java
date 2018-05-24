@@ -2,10 +2,10 @@ package pl.ynleborg.ynlebapiorg.leaderboard;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
-
 
 public class TALeaderboardServiceTest {
 
@@ -19,6 +19,7 @@ public class TALeaderboardServiceTest {
     }
 
     @Test
+    @Ignore
     public void shouldStoreCurrentScoreToFile() throws IOException {
         service.storeCurrentScores();
     }
