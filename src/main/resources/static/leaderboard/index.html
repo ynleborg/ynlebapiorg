@@ -13,7 +13,7 @@
         <th>Pozycja</th>
         <th>Gracz</th>
         <th>Platforma</th>
-        <th>Start</th>
+        <th>Start (23.05)</th>
         <th>Aktualny</th>
         <th>Delta</th>
     </tr>
@@ -23,15 +23,15 @@
 </table>
 <script>
     $.ajax({
-        url: "http://localhost:9080/api/leaderboard" //do testów
-        //url: "/api/leaderboard"
+        //url: "http://localhost:9080/api/leaderboard" //do testów
+        url: "/api/leaderboard"
     }).done(function (data) {
         let i = 1;
         for (let row of data) {
             var tr = document.createElement("tr");
             tr.appendChild(addRow(i++, 'position'));
-            tr.appendChild(addGamerRow(row.userName, row.icon, row.link));
-            tr.appendChild(addRow(row.platform, row.platform));
+            tr.appendChild(addGamerRow(row.userName, row.icon));
+            tr.appendChild(addPlatformRow(getPlatform(row.icon)));
             tr.appendChild(addRow(row.initialScore, 'score'));
             tr.appendChild(addRow(row.currentScore, 'score'));
             tr.appendChild(addRow(row.delta, 'score'));
@@ -42,20 +42,40 @@
         });
     });
 
-    function addGamerRow(value, icon, link) {
+    function getPlatform(icon) {
+        if (icon.includes("trueachievements")) {
+            return "xbox";
+        } else if (icon.includes("truetrophies")) {
+            return "ps4";
+        } else {
+            return "steam";
+        }
+    }
+
+    function addGamerRow(userName, icon) {
         let td = document.createElement("td");
         let div = document.createElement('div');
         let img = document.createElement('img');
         img.setAttribute('src', icon);
         let a = document.createElement('a');
         a.classList.add("username");
-        let createAText = document.createTextNode(value);
+        let createAText = document.createTextNode(userName);
         a.appendChild(createAText);
-        a.setAttribute('href', link);
+        a.setAttribute('href', getLink(userName, icon));
         div.appendChild(img);
         div.appendChild(a);
         td.appendChild(div);
         return td;
+    }
+
+    function getLink(userName, icon) {
+        if (icon.includes("trueachievements")) {
+            return "https://www.trueachievements.com/gamer/" + userName;
+        } else if (icon.includes("truetrophies")) {
+            return "https://www.truetrophies.com/gamer/" + userName;
+        } else {
+            return "https://www.truesteamachievements.com/gamer/" + userName;
+        }
     }
 
     function addRow(value, className) {
@@ -66,6 +86,29 @@
         div.appendChild(cell);
         td.appendChild(div);
         return td;
+    }
+
+    function addPlatformRow(platform) {
+        let td = document.createElement("td");
+        let div = document.createElement('div');
+        div.classList.add(platform);
+        let a = document.createElement('a');
+        let createAText = document.createTextNode(platform);
+        a.appendChild(createAText);
+        a.setAttribute('href',getLeaderboard(platform));
+        div.appendChild(a);
+        td.appendChild(div);
+        return td;
+    }
+
+    function getLeaderboard(platform) {
+        if (platform.includes("xbox")) {
+            return "https://www.trueachievements.com/leaderboard.aspx?leaderboardid=7810";
+        } else if (platform.includes("ps4")) {
+            return "https://www.truetrophies.com/leaderboard.aspx?leaderboardid=393";
+        } else {
+            return "https://www.truesteamachievements.com/leaderboard.aspx?leaderboardid=91";
+        }
     }
 </script>
 </body>

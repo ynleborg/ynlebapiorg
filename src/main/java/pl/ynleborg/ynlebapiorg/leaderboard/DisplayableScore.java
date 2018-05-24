@@ -13,8 +13,6 @@ public class DisplayableScore {
 
     private String userName;
 
-    private String platform;
-
     private String initialScore;
 
     private String currentScore;
@@ -22,6 +20,4 @@ public class DisplayableScore {
     private String delta;
 
     private String icon;
-
-    private String link;
 }

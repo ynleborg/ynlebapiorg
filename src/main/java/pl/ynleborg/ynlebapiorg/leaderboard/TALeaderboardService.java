@@ -39,25 +39,13 @@ public class TALeaderboardService {
             Score initial = initialScores.stream().filter(is -> is.getKey().equals(current.getKey())).findFirst().orElse(current);
             result.add(DisplayableScore.builder()
                     .userName(current.getUserName())
-                    .platform(current.getPlatform())
                     .icon(current.getIcon())
-                    .link(getLink(current.getUserName(), current.getPlatform()))
                     .initialScore(NumberFormat.getNumberInstance(Locale.US).format(initial.getScore()))
                     .currentScore(NumberFormat.getNumberInstance(Locale.US).format(current.getScore()))
                     .delta(NumberFormat.getNumberInstance(Locale.US).format(current.getScore() - initial.getScore()))
                     .build());
         });
         return result.stream().sorted(Comparator.comparing(DisplayableScore::getDelta).reversed()).collect(Collectors.toList());
-    }
-
-    private String getLink(String userName, String platform) {
-        if (platform.contains("xbox")) {
-            return "https://www.trueachievements.com/gamer/" + userName;
-        } else if (platform.contains("ps4")) {
-            return "https://www.truetrophies.com/gamer/" + userName;
-        } else {
-            return "https://www.truesteamachievements.com/gamer/" + userName;
-        }
     }
 
     public List<Score> getScores() throws IOException {
