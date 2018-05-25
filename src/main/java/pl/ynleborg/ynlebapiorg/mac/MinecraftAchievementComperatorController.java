@@ -18,7 +18,7 @@ public class MinecraftAchievementComperatorController {
         return Boolean.TRUE;
     }
 
-    //kolejnosc flag xbox;win10;android;gearvr
+    //kolejnosc flag xbox;win10;android;gearvr;piotr
     @RequestMapping("/api/mac")
     public Collection<Achievement> getModel() throws IOException {
         return service.getModel();

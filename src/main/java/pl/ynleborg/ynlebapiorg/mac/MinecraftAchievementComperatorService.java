@@ -24,6 +24,7 @@ public class MinecraftAchievementComperatorService {
         processURL(data, "https://www.trueachievements.com/game/Minecraft-Windows-10/achievements?gamerid=258489", 1);
         processURL(data, "https://www.trueachievements.com/game/Minecraft-Pocket-Edition/achievements?gamerid=258489", 2);
         processURL(data, "https://www.trueachievements.com/game/Minecraft-Pocket-Edition-Gear-VR/achievements?gamerid=258489", 3);
+        processURL(data, "https://www.trueachievements.com/game/Minecraft-Windows-10/achievements?gamerid=279598", 4);
         return data.values();
     }
 
@@ -54,7 +55,7 @@ public class MinecraftAchievementComperatorService {
                         .href("https://www.trueachievements.com" + href)
                         .description(description)
                         .ratio(ratio)
-                        .flags(new Boolean[4])
+                        .flags(new Boolean[5])
                         .build();
                 achievement.getFlags()[index] = unlocked;
                 data.put(name, achievement);
