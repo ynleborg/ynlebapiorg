@@ -17,7 +17,7 @@ public class DisplayableScore {
 
     private String currentScore;
 
-    private String delta;
+    private Long delta;
 
     private String icon;
 }

@@ -71,12 +71,6 @@
   "icon" : "http://static.truesteamachievements.com/imagestore/thumbs/0000296400/296452.png",
   "score" : 34352
 }, {
-  "key" : "arges/steam",
-  "userName" : "arges",
-  "platform" : "steam",
-  "icon" : "http://static.truesteamachievements.com/imagestore/thumbs/0002075600/2075642.png",
-  "score" : 13146
-}, {
   "key" : "Askub/steam",
   "userName" : "Askub",
   "platform" : "steam",
@@ -88,6 +82,12 @@
   "platform" : "steam",
   "icon" : "http://static.truesteamachievements.com/imagestore/thumbs/0000351300/351321.png",
   "score" : 7908
+}, {
+  "key" : "arges/steam",
+  "userName" : "arges",
+  "platform" : "steam",
+  "icon" : "http://static.truesteamachievements.com/imagestore/thumbs/0002075600/2075642.png",
+  "score" : 4385
 }, {
   "key" : "WhorehouseBlues/steam",
   "userName" : "WhorehouseBlues",

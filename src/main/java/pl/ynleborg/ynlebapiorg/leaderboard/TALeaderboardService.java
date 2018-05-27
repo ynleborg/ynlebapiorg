@@ -42,7 +42,7 @@ public class TALeaderboardService {
                     .icon(current.getIcon())
                     .initialScore(NumberFormat.getNumberInstance(Locale.US).format(initial.getScore()))
                     .currentScore(NumberFormat.getNumberInstance(Locale.US).format(current.getScore()))
-                    .delta(NumberFormat.getNumberInstance(Locale.US).format(current.getScore() - initial.getScore()))
+                    .delta(current.getScore() - initial.getScore())
                     .build());
         });
         return result.stream().sorted(Comparator.comparing(DisplayableScore::getDelta).reversed()).collect(Collectors.toList());
@@ -88,7 +88,7 @@ public class TALeaderboardService {
                 String userName = gamerTag.findElementByName("a", true).getText().toString();
                 String icon = e.findElementByName("img", true).getAttributeByName("src");
                 TagNode score1 = e.findElementByAttValue(CLASS, "score", true, true);
-                String score = score1.getText().toString().replace(",", "").replace(".00","");
+                String score = score1.getText().toString().replace(",", "").replace(".00", "");
                 int parenthesisIndex = score.indexOf("(");
                 if (parenthesisIndex != -1) {
                     score = score.substring(0, parenthesisIndex);
