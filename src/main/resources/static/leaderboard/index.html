@@ -13,8 +13,9 @@
         <th>Pozycja</th>
         <th>Gracz</th>
         <th>Platforma</th>
-        <th>Start (23.05)</th>
+        <th>Start (1.06)</th>
         <th>Aktualny</th>
+        <th>Turnieje</th>
         <th>Delta</th>
     </tr>
     </thead>
@@ -34,6 +35,7 @@
             tr.appendChild(addPlatformRow(getPlatform(row.icon)));
             tr.appendChild(addRow(row.initialScore, 'score'));
             tr.appendChild(addRow(row.currentScore, 'score'));
+            tr.appendChild(addRow(row.tournamentPoints, 'score'));
             tr.appendChild(addRow(row.delta, 'score'));
             $("#leaderboard tbody").append(tr);
         }

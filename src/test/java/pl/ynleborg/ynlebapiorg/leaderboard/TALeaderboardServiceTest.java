@@ -19,7 +19,6 @@ public class TALeaderboardServiceTest {
     }
 
     @Test
-    @Ignore
     public void shouldStoreCurrentScoreToFile() throws IOException {
         service.storeCurrentScores();
     }

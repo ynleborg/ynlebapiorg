@@ -17,6 +17,8 @@ public class DisplayableScore {
 
     private String currentScore;
 
+    private Long tournamentPoints;
+
     private Long delta;
 
     private String icon;

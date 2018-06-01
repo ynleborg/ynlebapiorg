@@ -21,4 +21,5 @@ public class Score {
 
     private Long score;
 
+    private Long tournamentPoints;
 }

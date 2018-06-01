@@ -26,7 +26,7 @@ public class TALeaderboardService {
 
     public void storeCurrentScores() throws IOException {
         om.enable(SerializationFeature.INDENT_OUTPUT);
-        om.writeValue(new File("store.json"), getScores());
+        om.writeValue(new File("store" + System.currentTimeMillis() + ".json"), getScores());
     }
 
     public List<DisplayableScore> getDisplayableScores() throws IOException {
@@ -42,7 +42,8 @@ public class TALeaderboardService {
                     .icon(current.getIcon())
                     .initialScore(NumberFormat.getNumberInstance(Locale.US).format(initial.getScore()))
                     .currentScore(NumberFormat.getNumberInstance(Locale.US).format(current.getScore()))
-                    .delta(current.getScore() - initial.getScore())
+                    .tournamentPoints(initial.getTournamentPoints())
+                    .delta(current.getScore() - initial.getScore() + initial.getTournamentPoints())
                     .build());
         });
         return result.stream().sorted(Comparator.comparing(DisplayableScore::getDelta).reversed()).collect(Collectors.toList());
@@ -87,8 +88,8 @@ public class TALeaderboardService {
             if (gamerTag != null) {
                 String userName = gamerTag.findElementByName("a", true).getText().toString();
                 String icon = e.findElementByName("img", true).getAttributeByName("src");
-                TagNode score1 = e.findElementByAttValue(CLASS, "score", true, true);
-                String score = score1.getText().toString().replace(",", "").replace(".00", "");
+                TagNode scoreTag = e.findElementByAttValue(CLASS, "score", true, true);
+                String score = scoreTag.getText().toString().replace(",", "").replace(".00", "");
                 int parenthesisIndex = score.indexOf("(");
                 if (parenthesisIndex != -1) {
                     score = score.substring(0, parenthesisIndex);
@@ -98,6 +99,7 @@ public class TALeaderboardService {
                         .userName(userName)
                         .icon("http:" + icon)
                         .score(Long.valueOf(score))
+                        .tournamentPoints(0L)
                         .platform(platform)
                         .build());
             }
