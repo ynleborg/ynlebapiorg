@@ -27,6 +27,13 @@
   "score" : 4751,
   "tournamentPoints" : 0
 }, {
+  "key" : "Askub/xbox",
+  "userName" : "Askub",
+  "platform" : "xbox",
+  "icon" : "http://static.trueachievements.com/imagestore/thumbs/0002742500/2742510.png",
+  "score" : 1100,
+  "tournamentPoints" : 0
+}, {
   "key" : "Solid_Kryszak/ps4",
   "userName" : "Solid_Kryszak",
   "platform" : "ps4",
