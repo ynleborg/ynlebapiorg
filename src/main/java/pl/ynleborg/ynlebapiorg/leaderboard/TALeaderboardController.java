@@ -17,7 +17,7 @@ public class TALeaderboardController {
     @RequestMapping("/api/leaderboard")
     public Collection<DisplayableScore> leaderboard(HttpServletResponse response) throws IOException {
         response.setHeader("Access-Control-Allow-Credentials", "true");
-        response.setHeader("Access-Control-Allow-Origin", "http://localhost:63342");
+        response.setHeader("Access-Control-Allow-Origin", "*");
         return service.getDisplayableScores();
     }
 }
