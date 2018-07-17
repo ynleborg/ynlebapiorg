@@ -30,14 +30,14 @@
   "key" : "Askub/xbox",
   "userName" : "Askub",
   "platform" : "xbox",
-  "icon" : "http://static.trueachievements.com/imagestore/thumbs/0002742500/2742510.png",
+  "icon" : "http://static.trueachievements.com/imagestore/thumbs/0002742700/2742710.png",
   "score" : 1100,
   "tournamentPoints" : 0
 }, {
   "key" : "Solid_Kryszak/ps4",
   "userName" : "Solid_Kryszak",
   "platform" : "ps4",
-  "icon" : "http://static.truetrophies.com/imagestore/thumbs/0000421300/421391.png",
+  "icon" : "http://static.truetrophies.com/imagestore/thumbs/0000426100/426160.png",
   "score" : 29637,
   "tournamentPoints" : 0
 }, {
@@ -72,7 +72,7 @@
   "key" : "martini449/ps4",
   "userName" : "martini449",
   "platform" : "ps4",
-  "icon" : "http://static.truetrophies.com/imagestore/thumbs/0000420900/420957.png",
+  "icon" : "http://static.truetrophies.com/imagestore/thumbs/0000428500/428574.png",
   "score" : 5908,
   "tournamentPoints" : 0
 }, {
@@ -130,5 +130,12 @@
   "platform" : "steam",
   "icon" : "http://static.truesteamachievements.com/imagestore/thumbs/0002055700/2055786.png",
   "score" : 628,
+  "tournamentPoints" : 0
+}, {
+  "key" : "Maras/steam",
+  "userName" : "Maras",
+  "platform" : "steam",
+  "icon" : "http://static.truesteamachievements.com/imagestore/thumbs/0002264600/2264675.png",
+  "score" : 563,
   "tournamentPoints" : 0
 } ]
