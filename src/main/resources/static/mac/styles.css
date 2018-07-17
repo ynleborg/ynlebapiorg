@@ -1,0 +1,57 @@
+#leaderboard {
+    width: 60%;
+    font-family: 'Verdana', sans-serif;
+}
+#leaderboard_filter {
+    width: 60%;
+    font-family: 'Verdana', sans-serif;
+    text-align: left;
+    float: left;
+}
+
+.username {
+    margin-left: 20px;
+}
+
+.xbox {
+    background-color: #7bd56b;
+    text-align: center;
+}
+
+.ps4 {
+    background-color: #7cc4ff;
+    text-align: center;
+}
+
+.steam {
+    background-color: #a5aca5;
+    text-align: center;
+}
+
+.score {
+    text-align: right;
+}
+.position {
+    text-align: center;
+}
+
+
+a:link {
+    text-decoration: none;
+    color: black;
+}
+
+a:visited {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: blueviolet;
+}
+
+a:active {
+    text-decoration: underline;
+    color: black;
+}

@@ -17,13 +17,20 @@ public class MinecraftAchievementComperatorService {
 
     private static final String CLASS = "class";
     private static final Pattern CHART_PATTERN = Pattern.compile("(\\d*\\.\\d*)");
+    private static final List<String> urls = Arrays.asList(
+            "https://www.trueachievements.com/game/Minecraft/achievements?gamerid=258489",
+            "https://www.trueachievements.com/game/Minecraft-Windows-10/achievements?gamerid=258489",
+            "https://www.trueachievements.com/game/Minecraft-Pocket-Edition/achievements?gamerid=258489",
+            "https://www.trueachievements.com/game/Minecraft-Pocket-Edition-Gear-VR/achievements?gamerid=258489",
+            "https://www.trueachievements.com/game/Minecraft-Nintendo-Switch/achievements?gamerid=258489"
+
+    );
 
     public Collection<Achievement> getModel() throws IOException {
         Map<String, Achievement> data = new TreeMap<>();
-        processURL(data, "https://www.trueachievements.com/game/Minecraft/achievements?gamerid=258489", 0);
-        processURL(data, "https://www.trueachievements.com/game/Minecraft-Windows-10/achievements?gamerid=258489", 1);
-        processURL(data, "https://www.trueachievements.com/game/Minecraft-Pocket-Edition/achievements?gamerid=258489", 2);
-        processURL(data, "https://www.trueachievements.com/game/Minecraft-Pocket-Edition-Gear-VR/achievements?gamerid=258489", 3);
+        for (int i = 0; i < urls.size(); i++) {
+            processURL(data, urls.get(i), i);
+        }
         return data.values();
     }
 
@@ -54,7 +61,7 @@ public class MinecraftAchievementComperatorService {
                         .href("https://www.trueachievements.com" + href)
                         .description(description)
                         .ratio(ratio)
-                        .flags(new Boolean[4])
+                        .flags(new Boolean[urls.size()])
                         .build();
                 achievement.getFlags()[index] = unlocked;
                 data.put(name, achievement);

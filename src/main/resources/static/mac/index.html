@@ -4,6 +4,7 @@
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"
           crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <table id="leaderboard" class="display compact" style="width:100%">
@@ -16,6 +17,7 @@
         <th>win10</th>
         <th>android</th>
         <th>gearvr</th>
+        <th>switch</th>
     </tr>
     </thead>
     <tbody>
@@ -34,10 +36,13 @@
             tr.appendChild(addRow(row.flags[1]));
             tr.appendChild(addRow(row.flags[2]));
             tr.appendChild(addRow(row.flags[3]));
+            tr.appendChild(addRow(row.flags[4]));
             $("#leaderboard tbody").append(tr);
         }
         $('#leaderboard').DataTable({
-            paging: false
+            paging: false,
+            "order": [[ 2, 'asc' ]]
+
         });
 
     });
