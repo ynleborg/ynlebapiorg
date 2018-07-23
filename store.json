@@ -90,6 +90,13 @@
   "score" : 34397,
   "tournamentPoints" : 0
 }, {
+  "key" : "dou420/steam",
+  "userName" : "dou420",
+  "platform" : "steam",
+  "icon" : "http://static.truesteamachievements.com/imagestore/thumbs/0002270700/2270705.png",
+  "score" : 12343,
+  "tournamentPoints" : 0
+}, {
   "key" : "Askub/steam",
   "userName" : "Askub",
   "platform" : "steam",
