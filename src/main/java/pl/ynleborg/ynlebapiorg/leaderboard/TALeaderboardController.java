@@ -16,8 +16,18 @@ public class TALeaderboardController {
 
     @RequestMapping("/api/leaderboard")
     public Collection<DisplayableScore> leaderboard(HttpServletResponse response) throws IOException {
+        decorate(response);
+        return service.getDisplayableScores();
+    }
+
+    @RequestMapping("/api/leaderboardcombined")
+    public Collection<DisplayableScore> leaderboardCombined(HttpServletResponse response) throws IOException {
+        decorate(response);
+        return service.getCombinedDisplayableScores();
+    }
+
+    private void decorate(HttpServletResponse response) {
         response.setHeader("Access-Control-Allow-Credentials", "true");
         response.setHeader("Access-Control-Allow-Origin", "*");
-        return service.getDisplayableScores();
     }
 }

@@ -7,32 +7,50 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<table id="leaderboard" class="display compact">
-    <thead>
-    <tr>
-        <th>Pozycja</th>
-        <th>Gracz</th>
-        <th>Platforma</th>
-        <th>Start (1.06)</th>
-        <th>Aktualny</th>
-        <th>Turnieje</th>
-        <th>Delta</th>
-    </tr>
-    </thead>
-    <tbody>
-    </tbody>
-</table>
+<button onclick="toggleLeaderboardType()">Toggle leaderboard type</button>
+<div id="leaderboardDIV" style="display: none">
+    <table id="leaderboard" class="display compact">
+        <thead>
+        <tr>
+            <th>Pozycja</th>
+            <th>Gracz</th>
+            <th>Platforma</th>
+            <th>Start (1.06)</th>
+            <th>Aktualny</th>
+            <th>Turnieje</th>
+            <th>Delta</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+<div id="leaderboardcombinedDIV" style="display: none">
+    <table id="leaderboardcombined" class="display compact">
+        <thead>
+        <tr>
+            <th>Pozycja</th>
+            <th>Gracz</th>
+            <th>Start (1.06)</th>
+            <th>Aktualny</th>
+            <th>Turnieje</th>
+            <th>Delta</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
 <script>
     $.ajax({
-        //url: "http://localhost:9080/api/leaderboard" //do testów
         url: "/api/leaderboard"
     }).done(function (data) {
         let i = 1;
         for (let row of data) {
             var tr = document.createElement("tr");
             tr.appendChild(addRow(i++, 'position'));
-            tr.appendChild(addGamerRow(row.userName, row.icon));
-            tr.appendChild(addPlatformRow(getPlatform(row.icon)));
+            tr.appendChild(addGamerRow(row.userName, row.icon, true));
+            tr.appendChild(addPlatformRow(row.platform));
             tr.appendChild(addRow(row.initialScore, 'score'));
             tr.appendChild(addRow(row.currentScore, 'score'));
             tr.appendChild(addRow(row.tournamentPoints, 'score'));
@@ -44,17 +62,28 @@
         });
     });
 
-    function getPlatform(icon) {
-        if (icon.includes("trueachievements")) {
-            return "xbox";
-        } else if (icon.includes("truetrophies")) {
-            return "ps4";
-        } else {
-            return "steam";
+    $.ajax({
+        url: "/api/leaderboardcombined"
+    }).done(function (data) {
+        let i = 1;
+        for (let row of data) {
+            var tr = document.createElement("tr");
+            tr.appendChild(addRow(i++, 'position'));
+            tr.appendChild(addGamerRow(row.userName, row.icon));
+            tr.appendChild(addRow(row.initialScore, 'score'));
+            tr.appendChild(addRow(row.currentScore, 'score'));
+            tr.appendChild(addRow(row.tournamentPoints, 'score'));
+            tr.appendChild(addRow(row.delta, 'score'));
+            $("#leaderboardcombined tbody").append(tr);
         }
-    }
+        $('#leaderboardcombined').DataTable({
+            paging: false
+        });
+        let y = document.getElementById("leaderboardcombinedDIV");
+        y.style.display = "block";
+    });
 
-    function addGamerRow(userName, icon) {
+    function addGamerRow(userName, icon, href) {
         let td = document.createElement("td");
         let div = document.createElement('div');
         let img = document.createElement('img');
@@ -63,7 +92,9 @@
         a.classList.add("username");
         let createAText = document.createTextNode(userName);
         a.appendChild(createAText);
-        a.setAttribute('href', getLink(userName, icon));
+        if (href) {
+            a.setAttribute('href', getLink(userName, icon));
+        }
         div.appendChild(img);
         div.appendChild(a);
         td.appendChild(div);
@@ -84,7 +115,12 @@
         let td = document.createElement("td");
         let div = document.createElement('div');
         div.classList.add(className);
-        let cell = document.createTextNode(value);
+        let cell;
+        if(className === 'score'){
+            cell = document.createTextNode(Number(value).toLocaleString('en'));
+        } else {
+            cell = document.createTextNode(value);
+        }
         div.appendChild(cell);
         td.appendChild(div);
         return td;
@@ -97,7 +133,7 @@
         let a = document.createElement('a');
         let createAText = document.createTextNode(platform);
         a.appendChild(createAText);
-        a.setAttribute('href',getLeaderboard(platform));
+        a.setAttribute('href', getLeaderboard(platform));
         div.appendChild(a);
         td.appendChild(div);
         return td;
@@ -110,6 +146,18 @@
             return "https://www.truetrophies.com/leaderboard.aspx?leaderboardid=393";
         } else {
             return "https://www.truesteamachievements.com/leaderboard.aspx?leaderboardid=91";
+        }
+    }
+
+    function toggleLeaderboardType() {
+        let x = document.getElementById("leaderboardDIV");
+        let y = document.getElementById("leaderboardcombinedDIV");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+            y.style.display = "none";
+        } else {
+            x.style.display = "none";
+            y.style.display = "block";
         }
     }
 </script>
