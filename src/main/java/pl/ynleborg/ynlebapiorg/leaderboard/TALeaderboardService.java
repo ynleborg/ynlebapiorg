@@ -1,13 +1,9 @@
 package pl.ynleborg.ynlebapiorg.leaderboard;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
 import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -23,16 +19,16 @@ public class TALeaderboardService {
     @Autowired
     private TAClient taClient;
 
-    private final ObjectMapper om = new ObjectMapper();
+    @Autowired
+    private ScoreRepository scoreRepository;
+
 
     public void storeCurrentScores() throws IOException {
-        om.enable(SerializationFeature.INDENT_OUTPUT);
-        om.writeValue(new File("store" + System.currentTimeMillis() + ".json"), taClient.getScores());
+        scoreRepository.storeScores(taClient.getScores());
     }
 
     public List<DisplayableScore> getDisplayableScores() throws IOException {
-        List<Score> initialScores = om.readValue(new File("store.json"), new TypeReference<List<Score>>() {
-        });
+        List<Score> initialScores = scoreRepository.getInitialScores();
 
         List<Score> currentScores = taClient.getScores();
         List<DisplayableScore> result = new ArrayList<>();
@@ -54,7 +50,7 @@ public class TALeaderboardService {
         return (long) ((current.getScore() - initial.getScore() + initial.getTournamentPoints()) * platformRatio(platform));
     }
 
-    public double platformRatio(String platform) {
+    private double platformRatio(String platform) {
         if ("steam".equals(platform)) {
             return 4.0;
         } else if ("ps4".equals(platform)) {

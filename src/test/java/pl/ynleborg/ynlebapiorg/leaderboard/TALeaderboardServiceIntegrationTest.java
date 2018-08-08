@@ -4,21 +4,19 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
 
-public class TALeaderboardServiceTest {
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class TALeaderboardServiceIntegrationTest {
 
-    TALeaderboardService service = new TALeaderboardService();
-
-    TAClient client = new TAClient();
-
-    @Test
-    public void shouldScrapFromLeaderboard() throws IOException {
-        ObjectMapper om = new ObjectMapper();
-        om.enable(SerializationFeature.INDENT_OUTPUT);
-        System.out.println(om.writeValueAsString(client.getScores()));
-    }
+    @Autowired
+    private TALeaderboardService service;
 
     @Test
     public void shouldStoreCurrentScoreToFile() throws IOException {
