@@ -20,16 +20,16 @@ public class TAClient {
     private static final String CLASS = "class";
 
     @Cacheable(value = "test", cacheManager = "myCacheManager")
-    public List<Score> getScores() throws IOException {
+    public List<InitialScore> getScores() throws IOException {
         log.info("Loading data from true*achievements");
-        List<Score> scores = new ArrayList<>();
-        processURL(scores, "https://www.trueachievements.com/leaderboard.aspx?leaderboardid=7810");
-        processURL(scores, "https://www.truetrophies.com/leaderboard.aspx?leaderboardid=393");
-        processURL(scores, "https://www.truesteamachievements.com/leaderboard.aspx?leaderboardid=91");
-        return scores;
+        List<InitialScore> initialScores = new ArrayList<>();
+        processURL(initialScores, "https://www.trueachievements.com/leaderboard.aspx?leaderboardid=7810");
+        processURL(initialScores, "https://www.truetrophies.com/leaderboard.aspx?leaderboardid=393");
+        processURL(initialScores, "https://www.truesteamachievements.com/leaderboard.aspx?leaderboardid=91");
+        return initialScores;
     }
 
-    private void processURL(List<Score> scores, String address) throws IOException {
+    private void processURL(List<InitialScore> initialScores, String address) throws IOException {
         URL url = new URL(address);
         final URLConnection urlConnection = url.openConnection();
         urlConnection.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:31.0) Gecko/20100101 Firefox/31.0");
@@ -37,7 +37,7 @@ public class TAClient {
         HtmlCleaner htmlCleaner = new HtmlCleaner();
         TagNode rootTagNode = htmlCleaner.clean(urlConnection.getInputStream());
         String platform = getPlatform(address);
-        processLeaderboard(scores, rootTagNode, platform);
+        processLeaderboard(initialScores, rootTagNode, platform);
         log.info("processed: {}", address);
     }
 
@@ -51,7 +51,7 @@ public class TAClient {
         }
     }
 
-    private void processLeaderboard(List<Score> scores, TagNode rootTagNode, String platform) {
+    private void processLeaderboard(List<InitialScore> initialScores, TagNode rootTagNode, String platform) {
         TagNode elementByAttValue = rootTagNode.findElementByAttValue(CLASS, "maintable leaderboard", true, true);
         TagNode[] tr = elementByAttValue.getElementsByName("tr", true);
         Arrays.asList(tr).forEach(e -> {
@@ -65,7 +65,7 @@ public class TAClient {
                 if (parenthesisIndex != -1) {
                     score = score.substring(0, parenthesisIndex);
                 }
-                scores.add(Score.builder()
+                initialScores.add(InitialScore.builder()
                         .userName(userName)
                         .icon("http:" + icon)
                         .score(Long.valueOf(score))

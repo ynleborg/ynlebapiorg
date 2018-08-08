@@ -20,9 +20,9 @@ public class TAClientIntegrationTest {
     @Test
     public void shouldScrapFromLeaderboard() throws IOException {
         //when
-        List<Score> scores = client.getScores();
+        List<InitialScore> initialScores = client.getScores();
 
         //then
-        Assertions.assertThat(scores).isNotEmpty();
+        Assertions.assertThat(initialScores).isNotEmpty();
     }
 }

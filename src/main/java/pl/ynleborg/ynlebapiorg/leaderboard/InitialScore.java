@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonIgnoreProperties(value = { "key" })
-public class Score {
+@JsonIgnoreProperties(value = {"key"})
+public class InitialScore {
 
     private String userName;
 
@@ -26,4 +26,5 @@ public class Score {
     public String getKey() {
         return userName + '/' + platform;
     }
+
 }

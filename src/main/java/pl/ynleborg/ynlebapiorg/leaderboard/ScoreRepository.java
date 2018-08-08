@@ -13,13 +13,13 @@ import java.util.List;
 public class ScoreRepository {
     private final ObjectMapper om = new ObjectMapper();
 
-    public void storeScores(List<Score> scores) throws IOException {
+    public void storeScores(List<InitialScore> initialScores) throws IOException {
         om.enable(SerializationFeature.INDENT_OUTPUT);
-        om.writeValue(new File("store" + System.currentTimeMillis() + ".json"), scores);
+        om.writeValue(new File("store" + System.currentTimeMillis() + ".json"), initialScores);
     }
 
-    public List<Score> getInitialScores() throws IOException {
-        return om.readValue(new File("store.json"), new TypeReference<List<Score>>() {
+    public List<InitialScore> getInitialScores() throws IOException {
+        return om.readValue(new File("store.json"), new TypeReference<List<InitialScore>>() {
         });
     }
 }

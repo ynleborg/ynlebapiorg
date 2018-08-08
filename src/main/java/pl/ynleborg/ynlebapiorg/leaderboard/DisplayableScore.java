@@ -22,29 +22,29 @@ public class DisplayableScore {
 
     private Long tournamentPoints;
 
-    private String initialScore;
+    private Long initialScore;
 
-    private String currentScore;
+    private Long currentScore;
 
     private Long delta;
 
     public String getKey() {
-        return userName + '/' + platform;
+        return userName + (platform != null ? '/' + platform : "");
     }
 
-    public static DisplayableScore fromScore(Score initial, Long currentScore) {
+    public static DisplayableScore fromScore(InitialScore initial, Long currentScore) {
         return DisplayableScore.builder()
                 .userName(initial.getUserName())
                 .platform(initial.getPlatform())
                 .icon(initial.getIcon())
                 .tournamentPoints(initial.getTournamentPoints())
-                .initialScore(NumberFormat.getNumberInstance(Locale.US).format(initial.getScore()))
-                .currentScore(NumberFormat.getNumberInstance(Locale.US).format(currentScore))
+                .initialScore(initial.getScore())
+                .currentScore(currentScore)
                 .delta(calculateDelta(initial, currentScore))
                 .build();
     }
 
-    private static long calculateDelta(Score initial, Long currentScore) {
+    private static long calculateDelta(InitialScore initial, Long currentScore) {
         return (long) ((currentScore - initial.getScore() + initial.getTournamentPoints()) * platformRatio(initial.getPlatform()));
     }
 
