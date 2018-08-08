@@ -1,4 +1,4 @@
-package pl.ynleborg.ynlebapiorg;
+package pl.ynleborg.ynlebapiorg.mac;
 
 import org.junit.Test;
 import pl.ynleborg.ynlebapiorg.mac.MinecraftAchievementComperatorService;

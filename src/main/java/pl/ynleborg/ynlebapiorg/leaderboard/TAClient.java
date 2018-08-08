@@ -66,7 +66,6 @@ public class TAClient {
                     score = score.substring(0, parenthesisIndex);
                 }
                 scores.add(Score.builder()
-                        .key(userName + "/" + platform)
                         .userName(userName)
                         .icon("http:" + icon)
                         .score(Long.valueOf(score))

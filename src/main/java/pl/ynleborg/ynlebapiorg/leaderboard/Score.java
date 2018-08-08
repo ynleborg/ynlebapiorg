@@ -1,5 +1,6 @@
 package pl.ynleborg.ynlebapiorg.leaderboard;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,9 +10,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties(value = { "key" })
 public class Score {
-
-    private String key;
 
     private String userName;
 
@@ -19,7 +19,11 @@ public class Score {
 
     private String icon;
 
+    private Long tournamentPoints;
+
     private Long score;
 
-    private Long tournamentPoints;
+    public String getKey() {
+        return userName + '/' + platform;
+    }
 }

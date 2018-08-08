@@ -34,29 +34,10 @@ public class TALeaderboardService {
         List<DisplayableScore> result = new ArrayList<>();
         currentScores.forEach(current -> {
             Score initial = initialScores.stream().filter(is -> is.getKey().equals(current.getKey())).findFirst().orElse(current);
-            result.add(DisplayableScore.builder()
-                    .userName(current.getUserName())
-                    .icon(current.getIcon())
-                    .initialScore(NumberFormat.getNumberInstance(Locale.US).format(initial.getScore()))
-                    .currentScore(NumberFormat.getNumberInstance(Locale.US).format(current.getScore()))
-                    .tournamentPoints(initial.getTournamentPoints())
-                    .delta(calculateDelta(current, initial, current.getPlatform()))
-                    .build());
+            result.add(DisplayableScore.fromScore(initial, current.getScore()));
         });
         return result.stream().sorted(Comparator.comparing(DisplayableScore::getDelta).reversed()).collect(Collectors.toList());
     }
 
-    private long calculateDelta(Score current, Score initial, String platform) {
-        return (long) ((current.getScore() - initial.getScore() + initial.getTournamentPoints()) * platformRatio(platform));
-    }
 
-    private double platformRatio(String platform) {
-        if ("steam".equals(platform)) {
-            return 4.0;
-        } else if ("ps4".equals(platform)) {
-            return 1.3;
-        } else {
-            return 1.0;
-        }
-    }
 }
