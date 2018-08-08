@@ -11,11 +11,13 @@ public class TALeaderboardServiceTest {
 
     TALeaderboardService service = new TALeaderboardService();
 
+    TAClient client = new TAClient();
+
     @Test
     public void shouldScrapFromLeaderboard() throws IOException {
         ObjectMapper om = new ObjectMapper();
         om.enable(SerializationFeature.INDENT_OUTPUT);
-        System.out.println(om.writeValueAsString(service.getScores()));
+        System.out.println(om.writeValueAsString(client.getScores()));
     }
 
     @Test

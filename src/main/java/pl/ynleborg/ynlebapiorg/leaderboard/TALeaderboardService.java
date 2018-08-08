@@ -4,36 +4,37 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import lombok.extern.slf4j.Slf4j;
-import org.htmlcleaner.HtmlCleaner;
-import org.htmlcleaner.TagNode;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-import java.net.URLConnection;
 import java.text.NumberFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 @Service
 @Slf4j
 public class TALeaderboardService {
 
-    private static final String CLASS = "class";
+    @Autowired
+    private TAClient taClient;
 
     private final ObjectMapper om = new ObjectMapper();
 
     public void storeCurrentScores() throws IOException {
         om.enable(SerializationFeature.INDENT_OUTPUT);
-        om.writeValue(new File("store" + System.currentTimeMillis() + ".json"), getScores());
+        om.writeValue(new File("store" + System.currentTimeMillis() + ".json"), taClient.getScores());
     }
 
     public List<DisplayableScore> getDisplayableScores() throws IOException {
         List<Score> initialScores = om.readValue(new File("store.json"), new TypeReference<List<Score>>() {
         });
 
-        List<Score> currentScores = getScores();
+        List<Score> currentScores = taClient.getScores();
         List<DisplayableScore> result = new ArrayList<>();
         currentScores.forEach(current -> {
             Score initial = initialScores.stream().filter(is -> is.getKey().equals(current.getKey())).findFirst().orElse(current);
@@ -53,7 +54,7 @@ public class TALeaderboardService {
         return (long) ((current.getScore() - initial.getScore() + initial.getTournamentPoints()) * platformRatio(platform));
     }
 
-    private double platformRatio(String platform) {
+    public double platformRatio(String platform) {
         if ("steam".equals(platform)) {
             return 4.0;
         } else if ("ps4".equals(platform)) {
@@ -62,62 +63,4 @@ public class TALeaderboardService {
             return 1.0;
         }
     }
-
-    public List<Score> getScores() throws IOException {
-
-        List<Score> scores = new ArrayList<>();
-        processURL(scores, "https://www.trueachievements.com/leaderboard.aspx?leaderboardid=7810");
-        processURL(scores, "https://www.truetrophies.com/leaderboard.aspx?leaderboardid=393");
-        processURL(scores, "https://www.truesteamachievements.com/leaderboard.aspx?leaderboardid=91");
-        return scores;
-    }
-
-    private void processURL(List<Score> scores, String address) throws IOException {
-        URL url = new URL(address);
-        final URLConnection urlConnection = url.openConnection();
-        urlConnection.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:31.0) Gecko/20100101 Firefox/31.0");
-        urlConnection.connect();
-        HtmlCleaner htmlCleaner = new HtmlCleaner();
-        TagNode rootTagNode = htmlCleaner.clean(urlConnection.getInputStream());
-        String platform = getPlatform(address);
-        processLeaderboard(scores, rootTagNode, platform);
-        log.info("processed: {}", address);
-    }
-
-    private String getPlatform(String address) {
-        if (address.contains("trueachievements")) {
-            return "xbox";
-        } else if (address.contains("truetrophies")) {
-            return "ps4";
-        } else {
-            return "steam";
-        }
-    }
-
-    private void processLeaderboard(List<Score> scores, TagNode rootTagNode, String platform) {
-        TagNode elementByAttValue = rootTagNode.findElementByAttValue(CLASS, "maintable leaderboard", true, true);
-        TagNode[] tr = elementByAttValue.getElementsByName("tr", true);
-        Arrays.asList(tr).forEach(e -> {
-            TagNode gamerTag = e.findElementByAttValue(CLASS, "gamer", true, true);
-            if (gamerTag != null) {
-                String userName = gamerTag.findElementByName("a", true).getText().toString();
-                String icon = e.findElementByName("img", true).getAttributeByName("src");
-                TagNode scoreTag = e.findElementByAttValue(CLASS, "score", true, true);
-                String score = scoreTag.getText().toString().replace(",", "").replace(".00", "");
-                int parenthesisIndex = score.indexOf("(");
-                if (parenthesisIndex != -1) {
-                    score = score.substring(0, parenthesisIndex);
-                }
-                scores.add(Score.builder()
-                        .key(userName + "/" + platform)
-                        .userName(userName)
-                        .icon("http:" + icon)
-                        .score(Long.valueOf(score))
-                        .tournamentPoints(0L)
-                        .platform(platform)
-                        .build());
-            }
-        });
-    }
-
 }
