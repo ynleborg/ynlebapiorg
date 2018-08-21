@@ -1,14 +1,25 @@
 package pl.ynleborg.ynlebapiorg.leaderboard;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.htmlcleaner.HtmlCleaner;
 import org.htmlcleaner.TagNode;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -67,12 +78,36 @@ public class TAClient {
                 }
                 initialScores.add(InitialScore.builder()
                         .userName(userName)
-                        .icon("http:" + icon)
+                        .icon(handle(icon, userName, platform))
                         .score(Long.valueOf(score))
                         .tournamentPoints(0L)
                         .platform(platform)
                         .build());
             }
         });
+    }
+
+    private String handle(String icon, String username, String platform) {
+        String imagePath = "avatars/" + username + "_" + platform + icon.substring(icon.length() - 4);
+        String localPath = "src/main/resources/static/leaderboard/" + imagePath;
+        try {
+            String iconUri = "http:" + icon;
+            URL website = new URL(iconUri);
+            //ReadableByteChannel rbc = Channels.newChannel(website.openStream());
+            //FileOutputStream fos = new FileOutputStream(localPath);
+            //fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
+            HttpURLConnection httpcon = (HttpURLConnection) website.openConnection();
+            httpcon.addRequestProperty("User-Agent", "Mozilla/4.0");
+            try (InputStream in = httpcon.getInputStream()) {
+                Path p = Paths.get(localPath);
+                if (!Files.exists(p)) {
+                    Files.createFile(p);
+                }
+                Files.copy(in, Paths.get(localPath), StandardCopyOption.REPLACE_EXISTING);
+            }
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
+        return imagePath;
     }
 }
