@@ -45,7 +45,7 @@ public class DisplayableScore {
     }
 
     private static long calculateDelta(InitialScore initial, Long currentScore) {
-        return (long) ((currentScore - initial.getScore() + initial.getTournamentPoints()) * platformRatio(initial.getPlatform()));
+        return (long) ((currentScore - initial.getScore()) * platformRatio(initial.getPlatform())) + initial.getTournamentPoints();
     }
 
     private static double platformRatio(String platform) {

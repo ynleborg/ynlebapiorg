@@ -3,13 +3,13 @@
   "platform" : "xbox",
   "icon" : "http://static.trueachievements.com/imagestore/thumbs/0002610500/2610510.png",
   "score" : 116370,
-  "tournamentPoints" : 0
+  "tournamentPoints" : 600
 }, {
   "userName" : "Porkite",
   "platform" : "xbox",
   "icon" : "http://static.trueachievements.com/imagestore/thumbs/0001679000/1679014.png",
   "score" : 95910,
-  "tournamentPoints" : 0
+  "tournamentPoints" : 1000
 }, {
   "userName" : "gregorry9",
   "platform" : "xbox",
@@ -21,25 +21,25 @@
   "platform" : "xbox",
   "icon" : "http://static.trueachievements.com/imagestore/thumbs/0002707600/2707669.png",
   "score" : 4751,
-  "tournamentPoints" : 0
+  "tournamentPoints" : 800
 }, {
   "userName" : "Askub",
   "platform" : "xbox",
   "icon" : "http://static.trueachievements.com/imagestore/thumbs/0002742700/2742710.png",
   "score" : 1100,
-  "tournamentPoints" : 0
+  "tournamentPoints" : 200
 }, {
   "userName" : "Solid_Kryszak",
   "platform" : "ps4",
   "icon" : "http://static.truetrophies.com/imagestore/thumbs/0000426100/426160.png",
   "score" : 29637,
-  "tournamentPoints" : 0
+  "tournamentPoints" : 2500
 }, {
   "userName" : "mtomson",
   "platform" : "ps4",
   "icon" : "http://static.truetrophies.com/imagestore/thumbs/0000422100/422166.png",
   "score" : 7926,
-  "tournamentPoints" : 0
+  "tournamentPoints" : 1800
 }, {
   "userName" : "Porkite",
   "platform" : "ps4",
@@ -99,13 +99,13 @@
   "platform" : "steam",
   "icon" : "http://static.truesteamachievements.com/imagestore/thumbs/0002075600/2075642.png",
   "score" : 4456,
-  "tournamentPoints" : 0
+  "tournamentPoints" : 400
 }, {
   "userName" : "WhorehouseBlues",
   "platform" : "steam",
   "icon" : "http://static.truesteamachievements.com/imagestore/thumbs/0002055700/2055792.png",
   "score" : 3736,
-  "tournamentPoints" : 0
+  "tournamentPoints" : 1200
 }, {
   "userName" : "pogoma",
   "platform" : "steam",
@@ -123,7 +123,7 @@
   "platform" : "steam",
   "icon" : "http://static.truesteamachievements.com/imagestore/thumbs/0002055700/2055786.png",
   "score" : 628,
-  "tournamentPoints" : 0
+  "tournamentPoints" : 1500
 }, {
   "userName" : "Maras",
   "platform" : "steam",
