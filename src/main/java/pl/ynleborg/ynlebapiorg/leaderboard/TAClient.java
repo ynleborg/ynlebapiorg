@@ -89,7 +89,6 @@ public class TAClient {
 
     private String handle(String icon, String username, String platform) {
         String imagePath = "avatars/" + username + "_" + platform + icon.substring(icon.length() - 4);
-        String localPath = "src/main/resources/static/leaderboard/" + imagePath;
         try {
             String iconUri = "http:" + icon;
             URL website = new URL(iconUri);
@@ -99,11 +98,11 @@ public class TAClient {
             HttpURLConnection httpcon = (HttpURLConnection) website.openConnection();
             httpcon.addRequestProperty("User-Agent", "Mozilla/4.0");
             try (InputStream in = httpcon.getInputStream()) {
-                Path p = Paths.get(localPath);
+                Path p = Paths.get(imagePath);
                 if (!Files.exists(p)) {
-                    Files.createFile(p);
+                    Files.createDirectories(p);
                 }
-                Files.copy(in, Paths.get(localPath), StandardCopyOption.REPLACE_EXISTING);
+                Files.copy(in, Paths.get(imagePath), StandardCopyOption.REPLACE_EXISTING);
             }
         } catch (Exception e) {
             log.error(e.getMessage(), e);
