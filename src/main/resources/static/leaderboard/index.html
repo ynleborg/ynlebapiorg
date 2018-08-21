@@ -17,8 +17,9 @@
             <th>Platforma</th>
             <th>Start (1.06)</th>
             <th>Aktualny</th>
-            <th>Turnieje</th>
             <th>Delta</th>
+            <th>Turnieje</th>
+            <th>Razem</th>
         </tr>
         </thead>
         <tbody>
@@ -33,8 +34,9 @@
             <th>Gracz</th>
             <th>Start (1.06)</th>
             <th>Aktualny</th>
-            <th>Turnieje</th>
             <th>Delta</th>
+            <th>Turnieje</th>
+            <th>Razem</th>
         </tr>
         </thead>
         <tbody>
@@ -53,8 +55,9 @@
             tr.appendChild(addPlatformRow(row.platform));
             tr.appendChild(addRow(row.initialScore, 'score'));
             tr.appendChild(addRow(row.currentScore, 'score'));
-            tr.appendChild(addRow(row.tournamentPoints, 'score'));
             tr.appendChild(addRow(row.delta, 'score'));
+            tr.appendChild(addRow(row.tournamentPoints, 'score'));
+            tr.appendChild(addRow(row.total, 'score'));
             $("#leaderboard tbody").append(tr);
         }
         $('#leaderboard').DataTable({
@@ -72,8 +75,9 @@
             tr.appendChild(addGamerRow(row.userName, row.icon));
             tr.appendChild(addRow(row.initialScore, 'score'));
             tr.appendChild(addRow(row.currentScore, 'score'));
-            tr.appendChild(addRow(row.tournamentPoints, 'score'));
             tr.appendChild(addRow(row.delta, 'score'));
+            tr.appendChild(addRow(row.tournamentPoints, 'score'));
+            tr.appendChild(addRow(row.total, 'score'));
             $("#leaderboardcombined tbody").append(tr);
         }
         $('#leaderboardcombined').DataTable({

@@ -28,11 +28,14 @@ public class DisplayableScore {
 
     private Long delta;
 
+    private Long total;
+
     public String getKey() {
         return userName + (platform != null ? '/' + platform : "");
     }
 
     public static DisplayableScore fromScore(InitialScore initial, Long currentScore) {
+        long delta = calculateDelta(initial, currentScore);
         return DisplayableScore.builder()
                 .userName(initial.getUserName())
                 .platform(initial.getPlatform())
@@ -40,12 +43,13 @@ public class DisplayableScore {
                 .tournamentPoints(initial.getTournamentPoints())
                 .initialScore(initial.getScore())
                 .currentScore(currentScore)
-                .delta(calculateDelta(initial, currentScore))
+                .delta(delta)
+                .total(delta + initial.getTournamentPoints())
                 .build();
     }
 
     private static long calculateDelta(InitialScore initial, Long currentScore) {
-        return (long) ((currentScore - initial.getScore()) * platformRatio(initial.getPlatform())) + initial.getTournamentPoints();
+        return (long) ((currentScore - initial.getScore()) * platformRatio(initial.getPlatform()));
     }
 
     private static double platformRatio(String platform) {

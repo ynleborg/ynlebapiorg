@@ -26,19 +26,18 @@ public class TALeaderboardService {
     }
 
     public List<DisplayableScore> getDisplayableScores() throws IOException {
-        List<InitialScore> initialInitialScores = scoreRepository.getInitialScores();
-
-        List<InitialScore> currentInitialScores = taClient.getScores();
-        List<DisplayableScore> result = new ArrayList<>();
-        currentInitialScores.forEach(current -> {
-            InitialScore initial = initialInitialScores.stream().filter(is -> is.getKey().equals(current.getKey())).findFirst().orElse(current);
-            result.add(DisplayableScore.fromScore(initial, current.getScore()));
-        });
-        return result.stream().sorted(Comparator.comparing(DisplayableScore::getDelta).reversed()).collect(Collectors.toList());
+        return getDisplayableScoresInternal().stream()
+                .sorted(Comparator.comparing(DisplayableScore::getTotal).reversed())
+                .collect(Collectors.toList());
     }
-
 
     public List<DisplayableScore> getCombinedDisplayableScores() throws IOException {
+        return flattened(getDisplayableScoresInternal()).stream()
+                .sorted(Comparator.comparing(DisplayableScore::getTotal).reversed())
+                .collect(Collectors.toList());
+    }
+
+    private List<DisplayableScore> getDisplayableScoresInternal() throws IOException {
         List<InitialScore> initialInitialScores = scoreRepository.getInitialScores();
 
         List<InitialScore> currentInitialScores = taClient.getScores();
@@ -47,8 +46,9 @@ public class TALeaderboardService {
             InitialScore initial = initialInitialScores.stream().filter(is -> is.getKey().equals(current.getKey())).findFirst().orElse(current);
             result.add(DisplayableScore.fromScore(initial, current.getScore()));
         });
-        return flattened(result).stream().sorted(Comparator.comparing(DisplayableScore::getDelta).reversed()).collect(Collectors.toList());
+        return result;
     }
+
 
     private List<DisplayableScore> flattened(List<DisplayableScore> initialScores) {
         List<DisplayableScore> flattened = new ArrayList<>();
@@ -64,6 +64,7 @@ public class TALeaderboardService {
                 candidate.setInitialScore(candidate.getInitialScore() + s.getInitialScore());
                 candidate.setCurrentScore(candidate.getCurrentScore() + s.getCurrentScore());
                 candidate.setDelta(candidate.getDelta() + s.getDelta());
+                candidate.setTotal(candidate.getTotal() + s.getTotal());
             }
         });
         return flattened;
@@ -78,6 +79,7 @@ public class TALeaderboardService {
                 .initialScore(score.getInitialScore())
                 .currentScore(score.getCurrentScore())
                 .delta(score.getDelta())
+                .total(score.getTotal())
                 .build();
 
     }

@@ -40,23 +40,27 @@ public class TALeadeboardServiceTest {
         assertThat(find(displayableScores, "Ynleborg/xbox").getInitialScore()).isEqualTo(100);
         assertThat(find(displayableScores, "Ynleborg/xbox").getCurrentScore()).isEqualTo(1000);
         assertThat(find(displayableScores, "Ynleborg/xbox").getTournamentPoints()).isEqualTo(10);
-        assertThat(find(displayableScores, "Ynleborg/xbox").getDelta()).isEqualTo(910); //ratio 1.0
+        assertThat(find(displayableScores, "Ynleborg/xbox").getDelta()).isEqualTo(900); //ratio 1.0
+        assertThat(find(displayableScores, "Ynleborg/xbox").getTotal()).isEqualTo(910); //ratio 1.0
 
         assertThat(find(displayableScores, "ynleborg/steam").getInitialScore()).isEqualTo(200);
         assertThat(find(displayableScores, "ynleborg/steam").getCurrentScore()).isEqualTo(2000);
         assertThat(find(displayableScores, "ynleborg/steam").getTournamentPoints()).isEqualTo(20);
-        assertThat(find(displayableScores, "ynleborg/steam").getDelta()).isEqualTo(7220); //ratio 4.0
+        assertThat(find(displayableScores, "ynleborg/steam").getDelta()).isEqualTo(7200); //ratio 4.0
+        assertThat(find(displayableScores, "ynleborg/steam").getTotal()).isEqualTo(7220); //ratio 4.0
 
 
         assertThat(find(displayableScores, "Porkite/ps4").getInitialScore()).isEqualTo(300);
         assertThat(find(displayableScores, "Porkite/ps4").getCurrentScore()).isEqualTo(3000);
         assertThat(find(displayableScores, "Porkite/ps4").getTournamentPoints()).isEqualTo(30);
-        assertThat(find(displayableScores, "Porkite/ps4").getDelta()).isEqualTo(3540L); //ratio 1.3
+        assertThat(find(displayableScores, "Porkite/ps4").getDelta()).isEqualTo(3510L); //ratio 1.3
+        assertThat(find(displayableScores, "Porkite/ps4").getTotal()).isEqualTo(3540L); //ratio 1.3
 
         assertThat(find(displayableScores, "Porkite/steam").getInitialScore()).isEqualTo(4000);
         assertThat(find(displayableScores, "Porkite/steam").getCurrentScore()).isEqualTo(4000);
         assertThat(find(displayableScores, "Porkite/steam").getTournamentPoints()).isEqualTo(0);
         assertThat(find(displayableScores, "Porkite/steam").getDelta()).isEqualTo(0);
+        assertThat(find(displayableScores, "Porkite/steam").getTotal()).isEqualTo(0);
     }
 
     @Test
@@ -74,12 +78,14 @@ public class TALeadeboardServiceTest {
         assertThat(find(combinedDisplayableScores, "Ynleborg").getInitialScore()).isEqualTo(300);
         assertThat(find(combinedDisplayableScores, "Ynleborg").getCurrentScore()).isEqualTo(3000);
         assertThat(find(combinedDisplayableScores, "Ynleborg").getTournamentPoints()).isEqualTo(30);
-        assertThat(find(combinedDisplayableScores, "Ynleborg").getDelta()).isEqualTo(8130); //ratio 1.0 i 4.0
+        assertThat(find(combinedDisplayableScores, "Ynleborg").getDelta()).isEqualTo(8100); //ratio 1.0 i 4.0
+        assertThat(find(combinedDisplayableScores, "Ynleborg").getTotal()).isEqualTo(8130); //ratio 1.0 i 4.0
 
         assertThat(find(combinedDisplayableScores, "Porkite").getInitialScore()).isEqualTo(4300);
         assertThat(find(combinedDisplayableScores, "Porkite").getCurrentScore()).isEqualTo(7000);
         assertThat(find(combinedDisplayableScores, "Porkite").getTournamentPoints()).isEqualTo(30);
-        assertThat(find(combinedDisplayableScores, "Porkite").getDelta()).isEqualTo(3540L); //ratio 1.3
+        assertThat(find(combinedDisplayableScores, "Porkite").getDelta()).isEqualTo(3510L); //ratio 1.3
+        assertThat(find(combinedDisplayableScores, "Porkite").getTotal()).isEqualTo(3540L); //ratio 1.3
     }
 
     private DisplayableScore find(List<DisplayableScore> scores, String key) {
