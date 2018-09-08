@@ -130,4 +130,12 @@
   "icon" : "avatars/Maras_steam.png",
   "score" : 563,
   "tournamentPoints" : 0
-} ]
+},
+  {
+    "userName" : "Surdol",
+    "platform" : "steam",
+    "icon" : "avatars/Surdol_steam.png",
+    "tournamentPoints" : 0,
+    "score" : 985
+  }
+]
