@@ -1,141 +1,177 @@
-[ {
-  "userName" : "Ynleborg",
-  "platform" : "xbox",
-  "icon" : "avatars/Ynleborg_xbox.jpg",
-  "score" : 116370,
-  "tournamentPoints" : 600
-}, {
-  "userName" : "Porkite",
-  "platform" : "xbox",
-  "icon" : "avatars/Porkite_xbox.jpg",
-  "score" : 95910,
-  "tournamentPoints" : 1000
-}, {
-  "userName" : "gregorry9",
-  "platform" : "xbox",
-  "icon" : "avatars/gregorry9_xbox.jpg",
-  "score" : 19471,
-  "tournamentPoints" : 0
-}, {
-  "userName" : "Martini449",
-  "platform" : "xbox",
-  "icon" : "avatars/Martini449_xbox.jpg",
-  "score" : 4751,
-  "tournamentPoints" : 800
-}, {
-  "userName" : "Askub",
-  "platform" : "xbox",
-  "icon" : "avatars/Askub_xbox.jpg",
-  "score" : 1100,
-  "tournamentPoints" : 200
-}, {
-  "userName" : "Solid_Kryszak",
-  "platform" : "ps4",
-  "icon" : "avatars/Solid_Kryszak_ps4.png",
-  "score" : 29637,
-  "tournamentPoints" : 2500
-}, {
-  "userName" : "mtomson",
-  "platform" : "ps4",
-  "icon" : "avatars/mtomson_ps4.png",
-  "score" : 7926,
-  "tournamentPoints" : 1800
-}, {
-  "userName" : "Porkite",
-  "platform" : "ps4",
-  "icon" : "avatars/Porkite_ps4.png",
-  "score" : 7441,
-  "tournamentPoints" : 0
-}, {
-  "userName" : "ynleborg1",
-  "platform" : "ps4",
-  "icon" : "avatars/ynleborg1_ps4.png",
-  "score" : 6351,
-  "tournamentPoints" : 0
-}, {
-  "userName" : "gregorry9",
-  "platform" : "ps4",
-  "icon" : "avatars/gregorry9_ps4.png",
-  "score" : 6200,
-  "tournamentPoints" : 0
-}, {
-  "userName" : "martini449",
-  "platform" : "ps4",
-  "icon" : "avatars/martini449_ps4.png",
-  "score" : 5908,
-  "tournamentPoints" : 0
-}, {
-  "userName" : "Porkite",
-  "platform" : "steam",
-  "icon" : "avatars/Porkite_steam.png",
-  "score" : 44871,
-  "tournamentPoints" : 0
-}, {
-  "userName" : "ynleborg",
-  "platform" : "steam",
-  "icon" : "avatars/ynleborg_steam.png",
-  "score" : 34397,
-  "tournamentPoints" : 0
-}, {
-  "userName" : "dou420",
-  "platform" : "steam",
-  "icon" : "avatars/dou420_steam.png",
-  "score" : 12343,
-  "tournamentPoints" : 0
-}, {
-  "userName" : "Askub",
-  "platform" : "steam",
-  "icon" : "avatars/Askub_steam.png",
-  "score" : 9017,
-  "tournamentPoints" : 0
-}, {
-  "userName" : "gregorry9",
-  "platform" : "steam",
-  "icon" : "avatars/gregorry9_steam.png",
-  "score" : 7911,
-  "tournamentPoints" : 0
-}, {
-  "userName" : "arges",
-  "platform" : "steam",
-  "icon" : "avatars/arges_steam.png",
-  "score" : 4456,
-  "tournamentPoints" : 400
-}, {
-  "userName" : "WhorehouseBlues",
-  "platform" : "steam",
-  "icon" : "avatars/WhorehouseBlues_steam.png",
-  "score" : 3736,
-  "tournamentPoints" : 1200
-}, {
-  "userName" : "pogoma",
-  "platform" : "steam",
-  "icon" : "avatars/pogoma_steam.png",
-  "score" : 3054,
-  "tournamentPoints" : 0
-}, {
-  "userName" : "Nidckon",
-  "platform" : "steam",
-  "icon" : "avatars/Nidckon_steam.png",
-  "tournamentPoints" : 0,
-  "score" : 1785
-}, {
-  "userName" : "swierzy",
-  "platform" : "steam",
-  "icon" : "avatars/swierzy_steam.png",
-  "score" : 628,
-  "tournamentPoints" : 1500
-}, {
-  "userName" : "Maras",
-  "platform" : "steam",
-  "icon" : "avatars/Maras_steam.png",
-  "score" : 563,
-  "tournamentPoints" : 0
-},
+[
   {
-    "userName" : "Surdol",
-    "platform" : "steam",
-    "icon" : "avatars/Surdol_steam.png",
-    "tournamentPoints" : 0,
-    "score" : 985
+    "icon": "avatars/Askub_steam.png",
+    "platform": "steam",
+    "score": 9017,
+    "tournamentPoints": 0,
+    "userName": "Askub"
+  },
+  {
+    "icon": "avatars/Askub_xbox.jpg",
+    "platform": "xbox",
+    "score": 1100,
+    "tournamentPoints": 200,
+    "userName": "Askub"
+  },
+  {
+    "icon": "avatars/Maras_steam.png",
+    "platform": "steam",
+    "score": 563,
+    "tournamentPoints": 0,
+    "userName": "Maras"
+  },
+  {
+    "icon": "avatars/Martini449_xbox.jpg",
+    "platform": "xbox",
+    "score": 4751,
+    "tournamentPoints": 800,
+    "userName": "Martini449"
+  },
+  {
+    "icon": "avatars/Nidckon_steam.png",
+    "platform": "steam",
+    "score": 1785,
+    "tournamentPoints": 0,
+    "userName": "Nidckon"
+  },
+  {
+    "icon": "avatars/Porkite_ps4.png",
+    "platform": "ps4",
+    "score": 7441,
+    "tournamentPoints": 0,
+    "userName": "Porkite"
+  },
+  {
+    "icon": "avatars/Porkite_steam.png",
+    "platform": "steam",
+    "score": 44871,
+    "tournamentPoints": 0,
+    "userName": "Porkite"
+  },
+  {
+    "icon": "avatars/Porkite_xbox.jpg",
+    "platform": "xbox",
+    "score": 95910,
+    "tournamentPoints": 1000,
+    "userName": "Porkite"
+  },
+  {
+    "icon": "avatars/Solid_Kryszak_ps4.png",
+    "platform": "ps4",
+    "score": 29637,
+    "tournamentPoints": 2500,
+    "userName": "Solid_Kryszak"
+  },
+  {
+    "icon": "avatars/Surdol_steam.png",
+    "platform": "steam",
+    "score": 985,
+    "tournamentPoints": 0,
+    "userName": "Surdol"
+  },
+  {
+    "icon": "avatars/WhorehouseBlues_steam.png",
+    "platform": "steam",
+    "score": 3736,
+    "tournamentPoints": 1200,
+    "userName": "WhorehouseBlues"
+  },
+  {
+    "icon": "avatars/Ynleborg_xbox.jpg",
+    "platform": "xbox",
+    "score": 116370,
+    "tournamentPoints": 600,
+    "userName": "Ynleborg"
+  },
+  {
+    "icon": "avatars/arges_steam.png",
+    "platform": "steam",
+    "score": 4456,
+    "tournamentPoints": 400,
+    "userName": "arges"
+  },
+  {
+    "icon": "avatars/dou420_steam.png",
+    "platform": "steam",
+    "score": 12343,
+    "tournamentPoints": 0,
+    "userName": "dou420"
+  },
+  {
+    "icon": "avatars/gregorry9_ps4.png",
+    "platform": "ps4",
+    "score": 6200,
+    "tournamentPoints": 0,
+    "userName": "gregorry9"
+  },
+  {
+    "icon": "avatars/gregorry9_steam.png",
+    "platform": "steam",
+    "score": 7911,
+    "tournamentPoints": 0,
+    "userName": "gregorry9"
+  },
+  {
+    "icon": "avatars/gregorry9_xbox.jpg",
+    "platform": "xbox",
+    "score": 19471,
+    "tournamentPoints": 0,
+    "userName": "gregorry9"
+  },
+  {
+    "icon": "avatars/martini449_ps4.png",
+    "platform": "ps4",
+    "score": 5908,
+    "tournamentPoints": 0,
+    "userName": "martini449"
+  },
+  {
+    "icon": "avatars/mtomson_ps4.png",
+    "platform": "ps4",
+    "score": 7926,
+    "tournamentPoints": 1800,
+    "userName": "mtomson"
+  },
+  {
+    "icon": "avatars/pogoma1_ps4.png",
+    "platform": "ps4",
+    "score": 0,
+    "tournamentPoints": 0,
+    "userName": "pogoma1"
+  },
+  {
+    "icon": "avatars/pogoma_steam.png",
+    "platform": "steam",
+    "score": 3054,
+    "tournamentPoints": 0,
+    "userName": "pogoma"
+  },
+  {
+    "icon": "avatars/rybakol16_ps4.png",
+    "platform": "ps4",
+    "score": 0,
+    "tournamentPoints": 0,
+    "userName": "rybakol16"
+  },
+  {
+    "icon": "avatars/swierzy_steam.png",
+    "platform": "steam",
+    "score": 628,
+    "tournamentPoints": 1500,
+    "userName": "swierzy"
+  },
+  {
+    "icon": "avatars/ynleborg1_ps4.png",
+    "platform": "ps4",
+    "score": 6351,
+    "tournamentPoints": 0,
+    "userName": "ynleborg1"
+  },
+  {
+    "icon": "avatars/ynleborg_steam.png",
+    "platform": "steam",
+    "score": 34397,
+    "tournamentPoints": 0,
+    "userName": "ynleborg"
   }
 ]

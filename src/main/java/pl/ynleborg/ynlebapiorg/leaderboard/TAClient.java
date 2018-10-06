@@ -105,7 +105,7 @@ public class TAClient {
                 Files.copy(in, Paths.get(imagePath), StandardCopyOption.REPLACE_EXISTING);
             }
         } catch (Exception e) {
-            log.error(e.getMessage(), e);
+            log.error(e.getMessage());
         }
         return imagePath;
     }
