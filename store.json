@@ -147,6 +147,13 @@
     "userName": "pogoma"
   },
   {
+    "icon": "avatars/rybak16_steam.png",
+    "platform": "steam",
+    "score": 4523,
+    "tournamentPoints": 0,
+    "userName": "rybak16"
+  },
+  {
     "icon": "avatars/rybakol16_ps4.png",
     "platform": "ps4",
     "score": 0,
