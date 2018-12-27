@@ -86,6 +86,8 @@ public class MinecraftAchievementComperatorService {
             return "Tie Dye Outfit";
         } else if ("Sail the seven seas".equals(name)) {
             return "Sail the 7 Seas";
+        } else if ("Organisational Wizard".equals(name)) {
+            return "Organizational Wizard";
         } else {
             return name;
         }

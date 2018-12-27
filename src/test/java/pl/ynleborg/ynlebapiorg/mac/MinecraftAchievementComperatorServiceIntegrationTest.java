@@ -18,7 +18,7 @@ public class MinecraftAchievementComperatorServiceIntegrationTest {
 
         //then
         assertThat(model).isNotEmpty();
-        assertThat(model.size()).isEqualTo(91);
+        assertThat(model.size()).isEqualTo(98);
         assertThat(model.stream().filter(n -> n.getName().equals("Acquire Hardware")).findFirst().get().getFlags()).doesNotContain(Boolean.FALSE);
 
     }
