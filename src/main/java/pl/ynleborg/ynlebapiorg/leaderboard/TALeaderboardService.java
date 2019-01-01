@@ -20,21 +20,30 @@ public class TALeaderboardService {
     @Autowired
     private ScoreRepository scoreRepository;
 
+    @Autowired
+    private FinalResultsRepository finalResultsRepository;
+
+    private Boolean finalStage = true;
+
 
     public void storeCurrentScores() throws IOException {
         scoreRepository.storeScores(taClient.getScores());
     }
 
     public List<DisplayableScore> getDisplayableScores() throws IOException {
-        return getDisplayableScoresInternal().stream()
-                .sorted(Comparator.comparing(DisplayableScore::getTotal).reversed())
-                .collect(Collectors.toList());
+        return finalStage ?
+                finalResultsRepository.getLeaderboardFinal() :
+                getDisplayableScoresInternal().stream()
+                        .sorted(Comparator.comparing(DisplayableScore::getTotal).reversed())
+                        .collect(Collectors.toList());
     }
 
     public List<DisplayableScore> getCombinedDisplayableScores() throws IOException {
-        return flattened(getDisplayableScoresInternal()).stream()
-                .sorted(Comparator.comparing(DisplayableScore::getTotal).reversed())
-                .collect(Collectors.toList());
+        return finalStage ?
+                finalResultsRepository.getLeaderboardCombinedFinal() :
+                flattened(getDisplayableScoresInternal()).stream()
+                        .sorted(Comparator.comparing(DisplayableScore::getTotal).reversed())
+                        .collect(Collectors.toList());
     }
 
     private List<DisplayableScore> getDisplayableScoresInternal() throws IOException {

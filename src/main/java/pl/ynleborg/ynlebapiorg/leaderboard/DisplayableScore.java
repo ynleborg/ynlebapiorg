@@ -5,9 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.text.NumberFormat;
-import java.util.Locale;
-
 @Data
 @Builder
 @NoArgsConstructor
@@ -29,6 +26,8 @@ public class DisplayableScore {
     private Long delta;
 
     private Long total;
+
+    private String key;
 
     public String getKey() {
         return userName + (platform != null ? '/' + platform : "");

@@ -1,0 +1,178 @@
+[
+  {
+    "userName": "Ynleborg",
+    "platform": null,
+    "icon": "avatars/Ynleborg_xbox.jpg",
+    "tournamentPoints": 800,
+    "initialScore": 157118,
+    "currentScore": 189705,
+    "delta": 37560,
+    "total": 38360,
+    "key": "Ynleborg"
+  },
+  {
+    "userName": "Solid_Kryszak",
+    "platform": null,
+    "icon": "avatars/Solid_Kryszak_ps4.png",
+    "tournamentPoints": 2500,
+    "initialScore": 29637,
+    "currentScore": 49989,
+    "delta": 26457,
+    "total": 28957,
+    "key": "Solid_Kryszak"
+  },
+  {
+    "userName": "Porkite",
+    "platform": null,
+    "icon": "avatars/Porkite_xbox.jpg",
+    "tournamentPoints": 1200,
+    "initialScore": 148222,
+    "currentScore": 164789,
+    "delta": 25193,
+    "total": 26393,
+    "key": "Porkite"
+  },
+  {
+    "userName": "WhorehouseBlues",
+    "platform": null,
+    "icon": "avatars/WhorehouseBlues_steam.png",
+    "tournamentPoints": 1400,
+    "initialScore": 3736,
+    "currentScore": 7694,
+    "delta": 15832,
+    "total": 17232,
+    "key": "WhorehouseBlues"
+  },
+  {
+    "userName": "Nidckon",
+    "platform": null,
+    "icon": "avatars/Nidckon_steam.png",
+    "tournamentPoints": 0,
+    "initialScore": 1785,
+    "currentScore": 4915,
+    "delta": 12520,
+    "total": 12520,
+    "key": "Nidckon"
+  },
+  {
+    "userName": "rybakol16",
+    "platform": null,
+    "icon": "avatars/rybakol16_ps4.png",
+    "tournamentPoints": 0,
+    "initialScore": 4523,
+    "currentScore": 10548,
+    "delta": 12130,
+    "total": 12130,
+    "key": "rybakol16"
+  },
+  {
+    "userName": "gregorry9",
+    "platform": null,
+    "icon": "avatars/gregorry9_xbox.jpg",
+    "tournamentPoints": 1000,
+    "initialScore": 33582,
+    "currentScore": 42159,
+    "delta": 11005,
+    "total": 12005,
+    "key": "gregorry9"
+  },
+  {
+    "userName": "Askub",
+    "platform": null,
+    "icon": "avatars/Askub_xbox.jpg",
+    "tournamentPoints": 200,
+    "initialScore": 10117,
+    "currentScore": 13450,
+    "delta": 10467,
+    "total": 10667,
+    "key": "Askub"
+  },
+  {
+    "userName": "pogoma1",
+    "platform": null,
+    "icon": "avatars/pogoma1_ps4.png",
+    "tournamentPoints": 200,
+    "initialScore": 3054,
+    "currentScore": 6944,
+    "delta": 10235,
+    "total": 10435,
+    "key": "pogoma1"
+  },
+  {
+    "userName": "Surdol",
+    "platform": null,
+    "icon": "avatars/Surdol_steam.png",
+    "tournamentPoints": 0,
+    "initialScore": 985,
+    "currentScore": 3575,
+    "delta": 10360,
+    "total": 10360,
+    "key": "Surdol"
+  },
+  {
+    "userName": "Martini449",
+    "platform": null,
+    "icon": "avatars/Martini449_xbox.jpg",
+    "tournamentPoints": 1000,
+    "initialScore": 10659,
+    "currentScore": 16889,
+    "delta": 6342,
+    "total": 7342,
+    "key": "Martini449"
+  },
+  {
+    "userName": "mtomson",
+    "platform": null,
+    "icon": "avatars/mtomson_ps4.png",
+    "tournamentPoints": 1800,
+    "initialScore": 7926,
+    "currentScore": 9038,
+    "delta": 1445,
+    "total": 3245,
+    "key": "mtomson"
+  },
+  {
+    "userName": "swierzy",
+    "platform": null,
+    "icon": "avatars/swierzy_steam.png",
+    "tournamentPoints": 2500,
+    "initialScore": 628,
+    "currentScore": 801,
+    "delta": 692,
+    "total": 3192,
+    "key": "swierzy"
+  },
+  {
+    "userName": "dou420m8",
+    "platform": null,
+    "icon": "avatars/dou420m8_ps4.png",
+    "tournamentPoints": 1000,
+    "initialScore": 12343,
+    "currentScore": 12966,
+    "delta": 1433,
+    "total": 2433,
+    "key": "dou420m8"
+  },
+  {
+    "userName": "arges",
+    "platform": null,
+    "icon": "avatars/arges_steam.png",
+    "tournamentPoints": 400,
+    "initialScore": 4456,
+    "currentScore": 4555,
+    "delta": 396,
+    "total": 796,
+    "key": "arges"
+  },
+  {
+    "userName": "Maras",
+    "platform": null,
+    "icon": "avatars/Maras_steam.png",
+    "tournamentPoints": 200,
+    "initialScore": 563,
+    "currentScore": 562,
+    "delta": -4,
+    "total": 196,
+    "key": "Maras"
+  }
+]

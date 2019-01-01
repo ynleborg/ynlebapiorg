@@ -17,14 +17,14 @@
     "icon": "avatars/Maras_steam.png",
     "platform": "steam",
     "score": 563,
-    "tournamentPoints": 0,
+    "tournamentPoints": 200,
     "userName": "Maras"
   },
   {
     "icon": "avatars/Martini449_xbox.jpg",
     "platform": "xbox",
     "score": 4751,
-    "tournamentPoints": 800,
+    "tournamentPoints": 1000,
     "userName": "Martini449"
   },
   {
@@ -52,7 +52,7 @@
     "icon": "avatars/Porkite_xbox.jpg",
     "platform": "xbox",
     "score": 95910,
-    "tournamentPoints": 1000,
+    "tournamentPoints": 1200,
     "userName": "Porkite"
   },
   {
@@ -73,14 +73,14 @@
     "icon": "avatars/WhorehouseBlues_steam.png",
     "platform": "steam",
     "score": 3736,
-    "tournamentPoints": 1200,
+    "tournamentPoints": 1400,
     "userName": "WhorehouseBlues"
   },
   {
     "icon": "avatars/Ynleborg_xbox.jpg",
     "platform": "xbox",
     "score": 116370,
-    "tournamentPoints": 600,
+    "tournamentPoints": 800,
     "userName": "Ynleborg"
   },
   {
@@ -94,7 +94,7 @@
     "icon": "avatars/dou420_steam.png",
     "platform": "steam",
     "score": 12343,
-    "tournamentPoints": 0,
+    "tournamentPoints": 1000,
     "userName": "dou420"
   },
   {
@@ -122,7 +122,7 @@
     "icon": "avatars/gregorry9_xbox.jpg",
     "platform": "xbox",
     "score": 19471,
-    "tournamentPoints": 0,
+    "tournamentPoints": 1000,
     "userName": "gregorry9"
   },
   {
@@ -143,7 +143,7 @@
     "icon": "avatars/pogoma1_ps4.png",
     "platform": "ps4",
     "score": 0,
-    "tournamentPoints": 0,
+    "tournamentPoints": 200,
     "userName": "pogoma1"
   },
   {
@@ -171,7 +171,7 @@
     "icon": "avatars/swierzy_steam.png",
     "platform": "steam",
     "score": 628,
-    "tournamentPoints": 1500,
+    "tournamentPoints": 2500,
     "userName": "swierzy"
   },
   {
