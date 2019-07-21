@@ -22,6 +22,9 @@ public class TALeadeboardServiceTest {
     @Mock
     private ScoreRepository scoreRepository;
 
+    @Mock
+    private FinalResultsRepository finalResultsRepository;
+
     @InjectMocks
     public TALeaderboardService taLeaderboardService;
 

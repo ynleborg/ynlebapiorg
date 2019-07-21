@@ -23,7 +23,7 @@ public class TALeaderboardService {
     @Autowired
     private FinalResultsRepository finalResultsRepository;
 
-    private Boolean finalStage = true;
+    private Boolean finalStage = false;
 
 
     public void storeCurrentScores() throws IOException {
