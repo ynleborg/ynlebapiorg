@@ -38,21 +38,23 @@ public class MinecraftAchievementComperatorService {
         URL url = new URL(address);
         HtmlCleaner htmlCleaner = new HtmlCleaner();
         TagNode rootTagNode = htmlCleaner.clean(url);
-        processPanels(data, rootTagNode, "maincolumnpanel achievementpanel green", index);
-        processPanels(data, rootTagNode, "maincolumnpanel achievementpanel red", index);
+        processPanels(data, rootTagNode, "w", index);
+        processPanels(data, rootTagNode, "nw", index);
     }
 
     private void processPanels(Map<String, Achievement> data, TagNode rootTagNode, String className, int index) {
         TagNode[] elementByAttValue = rootTagNode.getElementsByAttValue(CLASS, className, true, true);
         Arrays.asList(elementByAttValue).forEach(e -> {
-            TagNode mainlink = e.findElementByAttValue(CLASS, "mainlink", true, true);
+            TagNode mainlink = e.findElementByAttValue(CLASS, "title", true, true);
             String name = decrapify(mainlink.getText().toString().trim());
+            log.info("name:{}", name);
             String href = mainlink.getAttributeByName("href");
-            String description = e.findElementByAttValue(CLASS, "subheader", true, true).getText().toString().trim();
-            Double ratio = extractRatio(e.findElementByAttValue(CLASS, "chartlist", true, true).getText().toString());
+            String description = e.getChildTagList().get(1).getText().toString();
+            TagNode elementByAttValue1 = e.getChildTagList().get(3);
+            Double ratio = extractRatio(elementByAttValue1.getAttributeByName("data-af"));
 
             Achievement candidate = data.get(name);
-            Boolean unlocked = className.endsWith("green");
+            boolean unlocked = className.equals("w");
             if (candidate != null) {
                 candidate.getFlags()[index] = unlocked;
             } else {
@@ -70,7 +72,7 @@ public class MinecraftAchievementComperatorService {
     }
 
     public Double extractRatio(String text) {
-        Double ratio = 0.0;
+        double ratio = 0.0;
         Matcher marcher = CHART_PATTERN.matcher(text);
         while (marcher.find()) {
             ratio = Double.parseDouble(marcher.group(1));
@@ -92,10 +94,16 @@ public class MinecraftAchievementComperatorService {
             return "Tie Dye Outfit";
         } else if ("Lion Tamer".equals(name)) {
             return "Lion Hunter";
-        } else if ("So, I've Got That Going for Me".equals(name)) {
+        } else if ("So, I've Got That Going for Me".equals(name) || "So I've Got That Going for Me".equals(name)) {
             return "So I Got That Going for Me";
         } else if ("Organisational Wizard".equals(name)) {
             return "Organizational Wizard";
+        } else if ("I am a Marine Biologist".equals(name)) {
+            return "I am a marine biologist";
+        } else if ("Sleep with the Fishes".equals(name)) {
+            return "Sleep with the fishes";
+        } else if ("Dispense with This".equals(name)) {
+            return "Dispense With This";
         } else {
             return name;
         }
