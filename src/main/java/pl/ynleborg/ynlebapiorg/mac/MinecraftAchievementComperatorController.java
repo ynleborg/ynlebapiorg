@@ -13,7 +13,7 @@ import java.util.Collection;
 @AllArgsConstructor
 public class MinecraftAchievementComperatorController {
 
-    private MinecraftAchievementComperatorService service;
+    private MinecraftAchievementComperatorService2 service;
 
     @GetMapping("/api/healthcheck")
     public Boolean healthcheck() {
@@ -22,9 +22,9 @@ public class MinecraftAchievementComperatorController {
 
     //kolejnosc flag xbox;win10;android;gearvr;piotr
     @GetMapping("/api/mac")
-    public Collection<Achievement> getModel() throws IOException {
+    public Collection<AchievementDto> getModel() throws IOException {
         log.info(" > getModel");
-        Collection<Achievement> model = service.getModel();
+        Collection<AchievementDto> model = service.getModel();
         log.info(" < getModel model={}", model);
         return model;
     }
