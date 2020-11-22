@@ -13,7 +13,7 @@ import java.util.Collection;
 @AllArgsConstructor
 public class MinecraftAchievementComperatorController {
 
-    private MinecraftAchievementComperatorService2 service;
+    private MinecraftAchievementComparatorService service;
 
     @GetMapping("/api/healthcheck")
     public Boolean healthcheck() {

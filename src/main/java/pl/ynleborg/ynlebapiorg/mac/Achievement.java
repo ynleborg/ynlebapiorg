@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -16,5 +18,6 @@ public class Achievement {
     private String description;
     private String progressState;
     private Rarity rarity;
-
+    private Progression progression;
+    private List<String> platforms;
 }

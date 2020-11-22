@@ -11,4 +11,5 @@ public class AchievementDto {
     private String description;
     private Double ratio;
     private Boolean[] flags;
+
 }
