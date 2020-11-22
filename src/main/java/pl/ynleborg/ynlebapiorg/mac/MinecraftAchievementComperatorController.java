@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.IOException;
 import java.util.Collection;
 
 @Slf4j
@@ -20,14 +19,11 @@ public class MinecraftAchievementComperatorController {
         return Boolean.TRUE;
     }
 
-    //kolejnosc flag xbox;win10;android;gearvr;piotr
     @GetMapping("/api/mac")
-    public Collection<AchievementDto> getModel() throws IOException {
+    public Collection<AchievementDto> getModel() {
         log.info(" > getModel");
         Collection<AchievementDto> model = service.getModel();
         log.info(" < getModel model={}", model);
         return model;
     }
-
-
 }

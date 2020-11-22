@@ -10,6 +10,8 @@ import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.Arrays;
+import java.util.Collections;
 
 @Component
 @Slf4j
@@ -42,7 +44,7 @@ public class XboxApiClient {
                     if (statusCode == 200) {
                         return clientResponse
                                 .toEntity(Achievement[].class)
-                                .map(this::handleSuccessfulResponse);
+                                .map(result -> handleSuccessfulResponse(result, titleId));
                     } else {
                         return clientResponse
                                 .toEntity(String.class)
@@ -51,8 +53,12 @@ public class XboxApiClient {
                 }).block();
     }
 
-    private Achievement[] handleSuccessfulResponse(HttpEntity<Achievement[]> entity) {
-        return entity.getBody();
+    private Achievement[] handleSuccessfulResponse(HttpEntity<Achievement[]> entity, long titleId) {
+        Achievement[] body = entity.getBody();
+        if (body != null && titleId == 1909043648L) { // ugly! but api returns same platform for GearVR and Android...
+            Arrays.stream(body).sequential().forEach(e -> e.setPlatforms(Collections.singletonList("GearVR")));
+        }
+        return body;
     }
 
     private Achievement[] handleErrorResponse(int statusCode, HttpEntity<String> entity) {

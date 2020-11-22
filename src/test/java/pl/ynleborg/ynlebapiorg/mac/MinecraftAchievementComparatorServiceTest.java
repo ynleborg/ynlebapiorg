@@ -6,12 +6,13 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.util.Collection;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
+import static pl.ynleborg.ynlebapiorg.mac.Platform.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MinecraftAchievementComparatorServiceTest {
@@ -25,42 +26,36 @@ public class MinecraftAchievementComparatorServiceTest {
     @Test
     public void should_return_all_values() {
         //given
-        Achievement[] response1 = new Achievement[]{
-                Achievement.builder().name("A").progressState("Achieved").rarity(rarity()).build(),
-                Achievement.builder().name("B").progressState("NotAchieved").rarity(rarity()).build()
-        };
-
-        Achievement[] response2 = new Achievement[]{
-                Achievement.builder().name("A").progressState("Achieved").rarity(rarity()).build(),
-                Achievement.builder().name("C").progressState("NotAchieved").rarity(rarity()).build()
-        };
-        when(xboxApiClient.getAchievements(anyLong(), eq(1828326430L))).thenReturn(response1);
-        when(xboxApiClient.getAchievements(anyLong(), eq(896928775L))).thenReturn(response2);
-        when(xboxApiClient.getAchievements(anyLong(), eq(1739947436L))).thenReturn(response1);
-        when(xboxApiClient.getAchievements(anyLong(), eq(1909043648L))).thenReturn(response2);
-        when(xboxApiClient.getAchievements(anyLong(), eq(2047319603L))).thenReturn(response2);
+        when(xboxApiClient.getAchievements(anyLong(), eq(1828326430L))).thenReturn(createResponse("B", X));
+        when(xboxApiClient.getAchievements(anyLong(), eq(896928775L))).thenReturn(createResponse("C", W));
+        when(xboxApiClient.getAchievements(anyLong(), eq(1739947436L))).thenReturn(createResponse("B", A));
+        when(xboxApiClient.getAchievements(anyLong(), eq(1909043648L))).thenReturn(createResponse("C", G));
+        when(xboxApiClient.getAchievements(anyLong(), eq(2047319603L))).thenReturn(createResponse("C", N));
         // when
-        Collection<AchievementDto> model = service.getModel();
+        List<AchievementDto> model = new ArrayList(service.getModel());
 
         //then
         assertThat(model).hasSize(3);
-        assertThat(model.stream().filter(a -> a.getName().equals("A")).findFirst().get().getFlags()[0]).isTrue();
-        assertThat(model.stream().filter(a -> a.getName().equals("A")).findFirst().get().getFlags()[1]).isTrue();
-        assertThat(model.stream().filter(a -> a.getName().equals("A")).findFirst().get().getFlags()[2]).isTrue();
-        assertThat(model.stream().filter(a -> a.getName().equals("A")).findFirst().get().getFlags()[3]).isTrue();
-        assertThat(model.stream().filter(a -> a.getName().equals("A")).findFirst().get().getFlags()[4]).isTrue();
 
-        assertThat(model.stream().filter(a -> a.getName().equals("B")).findFirst().get().getFlags()[0]).isFalse();
-        assertThat(model.stream().filter(a -> a.getName().equals("B")).findFirst().get().getFlags()[1]).isNull();
-        assertThat(model.stream().filter(a -> a.getName().equals("B")).findFirst().get().getFlags()[2]).isFalse();
-        assertThat(model.stream().filter(a -> a.getName().equals("B")).findFirst().get().getFlags()[3]).isNull();
-        assertThat(model.stream().filter(a -> a.getName().equals("B")).findFirst().get().getFlags()[4]).isNull();
+        for (AchievementDto achievementDto : model) {
+            if (achievementDto.getName().equals("A")) {
+                assertThat(achievementDto.getPlatforms()).containsAll(Arrays.asList(X, W, A, G, N));
+            }
+            if (achievementDto.getName().equals("B")) {
+                assertThat(achievementDto.getPlatforms()).containsAll(Collections.emptyList());
+            }
+            if (achievementDto.getName().equals("C")) {
+                assertThat(achievementDto.getPlatforms()).containsAll(Collections.emptyList());
+            }
+        }
 
-        assertThat(model.stream().filter(a -> a.getName().equals("C")).findFirst().get().getFlags()[0]).isNull();
-        assertThat(model.stream().filter(a -> a.getName().equals("C")).findFirst().get().getFlags()[1]).isFalse();
-        assertThat(model.stream().filter(a -> a.getName().equals("C")).findFirst().get().getFlags()[2]).isNull();
-        assertThat(model.stream().filter(a -> a.getName().equals("C")).findFirst().get().getFlags()[3]).isFalse();
-        assertThat(model.stream().filter(a -> a.getName().equals("C")).findFirst().get().getFlags()[4]).isFalse();
+    }
+
+    private Achievement[] createResponse(String b, Platform platform) {
+        return new Achievement[]{
+                Achievement.builder().name("A").progressState("Achieved").rarity(rarity()).platforms(Collections.singletonList(platform.label)).build(),
+                Achievement.builder().name(b).progressState("NotAchieved").rarity(rarity()).platforms(Collections.singletonList(platform.label)).build()
+        };
     }
 
     private Rarity rarity() {

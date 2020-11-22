@@ -3,6 +3,8 @@ package pl.ynleborg.ynlebapiorg.mac;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Builder
 public class AchievementDto {
@@ -10,6 +12,5 @@ public class AchievementDto {
     private String href;
     private String description;
     private Double ratio;
-    private Boolean[] flags;
-
+    private List<Platform> platforms;
 }

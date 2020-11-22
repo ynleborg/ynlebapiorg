@@ -13,11 +13,12 @@
         <th>Name</th>
         <th>Description</th>
         <th>Ratio</th>
-        <th>xbox</th>
-        <th>win10</th>
-        <th>android</th>
-        <th>gearvr</th>
-        <th>switch</th>
+        <th>X</th>
+        <th>W</th>
+        <th>A</th>
+        <th>G</th>
+        <th>N</th>
+        <th>I</th>
     </tr>
     </thead>
     <tbody>
@@ -32,17 +33,17 @@
             tr.appendChild(addRow(row.name));
             tr.appendChild(addRow(row.description, row.href));
             tr.appendChild(addRow(row.ratio));
-            tr.appendChild(addRow(row.flags[0]));
-            tr.appendChild(addRow(row.flags[1]));
-            tr.appendChild(addRow(row.flags[2]));
-            tr.appendChild(addRow(row.flags[3]));
-            tr.appendChild(addRow(row.flags[4]));
+            tr.appendChild(addRow(row.platforms.includes("X")));
+            tr.appendChild(addRow(row.platforms.includes("W")));
+            tr.appendChild(addRow(row.platforms.includes("A")));
+            tr.appendChild(addRow(row.platforms.includes("G")));
+            tr.appendChild(addRow(row.platforms.includes("N")));
+            tr.appendChild(addRow(row.platforms.includes("I")));
             $("#leaderboard tbody").append(tr);
         }
         $('#leaderboard').DataTable({
             paging: false,
             "order": [[ 2, 'asc' ]]
-
         });
 
     });
