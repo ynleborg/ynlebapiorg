@@ -11,25 +11,22 @@ import java.util.*;
 @AllArgsConstructor
 public class MinecraftAchievementComparatorService {
 
-    //                                     xbox;        win10;      android;     gearvr;      switch;      ios
-    private static final long[] gameIds = {1828326430L, 896928775L, 1739947436L, 1909043648L, 2047319603L, 1810924247L};
-    private static final long XUID = 2533274848778089L; //ynleborg
     private final XboxApiClient xboxApiClient;
 
-
-    public Collection<AchievementDto> getModel() {
+    public Collection<AchievementDto> getModel(Long uuid, Platform[] gameIds) {
         Map<String, AchievementDto> result = new HashMap<>();
-        Arrays.stream(gameIds).sequential().forEach(gameId -> Arrays.asList(xboxApiClient.getAchievements(XUID, gameId)).
-                forEach(a -> result
-                        .computeIfAbsent(
-                                getSanitizedName(a.getName()),
-                                sanitizedName -> AchievementDto.builder()
-                                        .name(sanitizedName)
-                                        .description(a.getDescription())
-                                        .platforms(new ArrayList<>())
-                                        .ratio(a.getRarity().getCurrentPercentage())
-                                        .build())
-                        .getPlatforms().addAll(isAchieved(a) ? Collections.singleton(Platform.valueOfLabel(a.getPlatforms().get(0))) : Collections.emptyList())));
+        Arrays.stream(gameIds).sequential()
+                .forEach(gameId -> Arrays.asList(xboxApiClient.getAchievements(uuid, gameId.titleId)).
+                        forEach(a -> result
+                                .computeIfAbsent(
+                                        getSanitizedName(a.getName()),
+                                        sanitizedName -> AchievementDto.builder()
+                                                .name(sanitizedName)
+                                                .description(a.getDescription())
+                                                .platforms(new ArrayList<>())
+                                                .ratio(a.getRarity().getCurrentPercentage())
+                                                .build())
+                                .getPlatforms().addAll(isAchieved(a) ? Collections.singleton(gameId) : Collections.emptyList())));
         return result.values();
     }
 

@@ -15,6 +15,9 @@ public class MinecraftAchievementComperatorController {
 
     private final MinecraftAchievementComparatorService service;
 
+    private static final Platform[] gameIds = {Platform.X, Platform.W, Platform.A, Platform.G, Platform.N, Platform.I};
+    private static final long XUID = 2533274848778089L; //ynleborg
+
     @GetMapping("/api/healthcheck")
     public Boolean healthcheck() {
         return Boolean.TRUE;
@@ -23,7 +26,7 @@ public class MinecraftAchievementComperatorController {
     @GetMapping("/api/mac")
     public Collection<AchievementDto> getModel(@RequestParam String user, @RequestParam String[] platforms) {
         log.info(" > getModel user={}, platforms={}", user, platforms);
-        Collection<AchievementDto> model = service.getModel();
+        Collection<AchievementDto> model = service.getModel(XUID, gameIds);
         log.info(" < getModel model={}", model);
         return model;
     }
