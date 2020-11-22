@@ -46,7 +46,7 @@ class XboxApiClientTest {
                 .setBody(textBodyResponse));
 
         // when
-        Achievement[] response = client.getAchievements(123, 456);
+        Achievement[] response = client.getAchievements(123L, 456L);
 
         // then
         assertThat(response).isNotNull();

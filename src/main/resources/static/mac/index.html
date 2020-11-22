@@ -26,7 +26,7 @@
 </table>
 <script>
     $.ajax({
-        url: "/api/mac"
+        url: "/api/mac?user=ynleborg&platforms=X,W,I"
     }).done(function (data) {
         for (let row of data) {
             var tr = document.createElement("tr");
@@ -43,7 +43,7 @@
         }
         $('#leaderboard').DataTable({
             paging: false,
-            "order": [[ 2, 'asc' ]]
+            "order": [[ 2, 'desc' ]]
         });
 
     });

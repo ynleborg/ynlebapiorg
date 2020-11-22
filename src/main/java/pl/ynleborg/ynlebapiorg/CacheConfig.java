@@ -19,15 +19,16 @@ import java.util.concurrent.TimeUnit;
 public class CacheConfig extends CachingConfigurerSupport {
 
     @Bean
-    public CacheManager myCacheManager() {
-        return new ConcurrentMapCacheManager() {
+    public CacheManager cacheManager() {
+        return new ConcurrentMapCacheManager("getAchievements") {
+
             @Override
             protected Cache createConcurrentMapCache(final String name) {
                 return new ConcurrentMapCache(name,
                         CacheBuilder
                                 .newBuilder()
                                 .expireAfterWrite(30, TimeUnit.SECONDS)
-                                .maximumSize(100)
+                                .maximumSize(10000)
                                 .build()
                                 .asMap(),
                         false);

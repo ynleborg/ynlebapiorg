@@ -3,6 +3,7 @@ package pl.ynleborg.ynlebapiorg.mac;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
@@ -33,8 +34,11 @@ public class XboxApiClient {
         this.webClient = webClient.build();
     }
 
-    Achievement[] getAchievements(long xuid, long titleId) {
-        return webClient
+    @Cacheable("getAchievements")
+    public Achievement[] getAchievements(Long xuid, Long titleId) {
+        long start = System.currentTimeMillis();
+        log.info(" > getAchievements xuid={}, titleId={}", xuid, titleId);
+        Achievement[] block = webClient
                 .method(HttpMethod.GET)
                 .uri(uriBuilder -> createUri(xuid, titleId))
                 .header("X-AUTH", apiKey)
@@ -51,6 +55,8 @@ public class XboxApiClient {
                                 .map(entity -> handleErrorResponse(statusCode, entity));
                     }
                 }).block();
+        log.info(" < getAchievements time={} ms", System.currentTimeMillis() - start);
+        return block;
     }
 
     private Achievement[] handleSuccessfulResponse(HttpEntity<Achievement[]> entity, long titleId) {
