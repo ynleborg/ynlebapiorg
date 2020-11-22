@@ -13,10 +13,11 @@ public class MinecraftAchievementComparatorService {
 
     private final XboxApiClient xboxApiClient;
 
-    public Collection<AchievementDto> getModel(Long uuid, Platform[] gameIds) {
+    public Collection<AchievementDto> getModel(String gamertag, Platform[] gameIds) {
+        Long xuid = xboxApiClient.getXuid(gamertag);
         Map<String, AchievementDto> result = new HashMap<>();
         Arrays.stream(gameIds).sequential()
-                .forEach(gameId -> Arrays.asList(xboxApiClient.getAchievements(uuid, gameId.titleId)).
+                .forEach(gameId -> Arrays.asList(xboxApiClient.getAchievements(xuid, gameId.titleId)).
                         forEach(a -> result
                                 .computeIfAbsent(
                                         getSanitizedName(a.getName()),

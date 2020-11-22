@@ -32,7 +32,7 @@ public class MinecraftAchievementComparatorServiceTest {
         when(xboxApiClient.getAchievements(anyLong(), eq(1909043648L))).thenReturn(createResponse("C", G));
         when(xboxApiClient.getAchievements(anyLong(), eq(2047319603L))).thenReturn(createResponse("C", N));
         // when
-        List<AchievementDto> model = new ArrayList<>(service.getModel(1L, new Platform[]{X, W, A, G, N}));
+        List<AchievementDto> model = new ArrayList<>(service.getModel("ynleborg", new Platform[]{X, W, A, G, N}));
 
         //then
         assertThat(model).hasSize(3);

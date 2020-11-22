@@ -25,8 +25,15 @@
     </tbody>
 </table>
 <script>
+    const params = new URLSearchParams(window.location.search)
+    console.log(params);
+    console.log(params.get("gamertag"));
+    let gamertag="Ynleborg";
+    if(params.get("gamertag")){
+        gamertag = params.get("gamertag");
+    }
     $.ajax({
-        url: "/api/mac?user=ynleborg&platforms=X,W,I"
+        url: "/api/mac?gamertag="+gamertag+"&platforms=X,W,I"
     }).done(function (data) {
         for (let row of data) {
             var tr = document.createElement("tr");
@@ -66,6 +73,8 @@
         td.appendChild(text);
         return td;
     }
+
 </script>
 </body>
 </html>
+

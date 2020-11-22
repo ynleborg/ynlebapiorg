@@ -10,6 +10,7 @@ import org.springframework.cache.concurrent.ConcurrentMapCache;
 import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 import java.util.concurrent.TimeUnit;
 
@@ -19,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 public class CacheConfig extends CachingConfigurerSupport {
 
     @Bean
-    public CacheManager cacheManager() {
+    public CacheManager getAchievementsCM() {
         return new ConcurrentMapCacheManager("getAchievements") {
 
             @Override
@@ -29,6 +30,25 @@ public class CacheConfig extends CachingConfigurerSupport {
                                 .newBuilder()
                                 .expireAfterWrite(30, TimeUnit.SECONDS)
                                 .maximumSize(10000)
+                                .build()
+                                .asMap(),
+                        false);
+            }
+        };
+    }
+
+    @Bean
+    @Primary
+    public CacheManager getXuidCM() {
+        return new ConcurrentMapCacheManager("getXuid") {
+
+            @Override
+            protected Cache createConcurrentMapCache(final String name) {
+                return new ConcurrentMapCache(name,
+                        CacheBuilder
+                                .newBuilder()
+                                .expireAfterWrite(30, TimeUnit.DAYS)
+                                .maximumSize(10)
                                 .build()
                                 .asMap(),
                         false);

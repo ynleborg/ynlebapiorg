@@ -68,7 +68,10 @@ class XboxApiClientTest {
         @Bean
         @Primary
         XboxApiClient xboxApiClient(MockWebServer mockWebServer) {
-            return new XboxApiClient("secretapikey", mockWebServer.url("/").toString(), WebClient.builder());
+            return new XboxApiClient("secretapikey",
+                    mockWebServer.url("/").toString(),
+                    mockWebServer.url("/").toString(),
+                    WebClient.builder());
         }
     }
 
