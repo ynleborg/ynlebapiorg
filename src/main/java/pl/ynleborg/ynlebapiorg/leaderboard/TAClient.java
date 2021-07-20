@@ -30,7 +30,6 @@ public class TAClient {
 
     private static final String CLASS = "class";
 
-    @Cacheable(value = "test", cacheManager = "myCacheManager")
     public List<InitialScore> getScores() throws IOException {
         log.info("Loading data from true*achievements");
         List<InitialScore> initialScores = new ArrayList<>();
